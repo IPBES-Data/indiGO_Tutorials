@@ -1,0 +1,590 @@
+---
+title: "Indicator Analyses with the IA R-Package"
+author: Jessica Hetzer (jessica.hetzer@senckenberg.de)
+execute:
+  warning: false
+format:
+  html:
+    number-sections: true
+    toc: true        # Include table of contents
+    toc-depth: 3     # Specify depth of toc (optional)
+---
+
+# Overview
+
+This Quarto project demonstrates the usage of the **IA (Indicator Analysis)** R-package, which is designed to systematically display and standardize global indicators of the status and the trends in nature.
+
+The IA R-package provides an open-access framework that enables users to access annually and globally aggregated indicators as described and standardized in the *IPBES Global Assessment Chapter 2.2 – Supplementary Material: Indicators of Status & Trends in Nature*. Furthermore, the AI package offers R users a consistent and replicable way to analyze, plot and compare those indicators.
+
+Please note that while the IA R-package is developed with reference to the IPBES report, IPBES does not assume any accountability for the contents or outputs of the package.
+
+```{r, echo=FALSE}
+#set local R library path, please change for personal use
+.libPaths("/home/data3/R/x86_64-pc-linux-gnu-library/4.4")
+
+#load Indicator Analysis Package
+library(IA)
+
+#load further packages dor displaying in this document 
+library(kableExtra)
+
+```
+
+# Summary of Indicators
+
+In this script, we select quantitative data that represent the state of nature globally or across multiple regions. The process begins by considering IPBES Core and Highlighted indicators, along with additional data from peer-reviewed literature and other authoritative sources (see Table 1). Indicators are assigned to Essential Biodiversity Variable (EBV) classes and categorized based on their relevance to ecosystems and their sensitivity to human impacts.
+
+```{r,  echo=FALSE}
+load_indicatorSummary()%>%
+  kbl(escape = FALSE, caption="Table 1: Summary of indicators used in this synthesis organised alphabetically within EBV class (and, where relevant, EBV scale). Core/Highlight/Other denotes the Knowledge & Data TSU’s evaluation of each indicator. Whole or Part of indicator denotes whether the row of the table refers to an overall indicator (e.g., Red List Index) or a subset (e.g., Red List Index of pollinators).") %>%
+  kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive")) %>%
+  row_spec(0, extra_css = "height: 180px; transform-origin: left", angle=-45)
+```
+
+# Exploring AI Package Functionalities
+
+The package provides several features for exploring and displaying indicators. Below is an example demonstrating the key functions available.
+
+To obtain an overview of the available indicators and their names, the `print_indicatorNames()` function can be used:
+
+```{r}
+print_indicatorNames()
+```
+
+From this list, an indicator, such as "Aboveground biomass (PgC)", can be selected for further investigation. Once an indicator is chosen, the corresponding data can be loaded using the `load_indicatorData()` function:
+
+```{r}
+load_indicatorData("Percentage natural habitat extent")
+```
+
+To visualize the global status of the selected indicator in a manner consistent with the IPBES Annex, the `plot_absoluteValue()` function can be applied. This function presents the absolute values, representing the globally aggregated data over time in its original units.
+
+```{r}
+plot_absoluteValue("Percentage natural habitat extent")
+```
+
+Trends over time can be examined using the `plot_trendLine()` function, while changes since 1970 can be assessed with `plot_changeSince1970()`, displaying the globally aggregated value standardized to a percentage or relative to its 1970 value.
+
+```{r}
+plot_trendLine("Percentage natural habitat extent")
+plot_changeSince1970("Percentage natural habitat extent")
+```
+
+Finally, to display both the status and trends of the indicator side by side, the `plot_indicatorStatusAndTrend()` function can be used:
+
+```{r}
+plot_indicatorStatusAndTrend("Percentage natural habitat extent")
+```
+
+# Display all indicators available
+
+## Indicators of ecosystem structure
+
+### Aboveground biomass
+
+```{r}
+plot_indicatorStatusAndTrend("Aboveground biomass (PgC)")
+```
+
+### Biodiversity Habitat Index (overall habitat integrity)
+
+```{r}
+plot_indicatorStatusAndTrend("All-taxa habitat (BILBI)")
+plot_indicatorStatusAndTrend("All-taxa habitat (BILBI) - hotspots")
+plot_indicatorStatusAndTrend("Invertebrate habitat (BILBI)")
+plot_indicatorStatusAndTrend("Plant habitat (BILBI)")
+plot_indicatorStatusAndTrend("Vertebrate habitat (BILBI)")
+```
+
+### Coastal protection habitats
+
+```{r}
+plot_indicatorStatusAndTrend("Extent and condition of coastal protection habitats")
+
+```
+
+Subset: Coastal carbon-rich habitat
+
+```{r}
+plot_indicatorStatusAndTrend("Extent and condition of natural coastal carbon sinks")
+
+```
+
+### Extent of forests
+
+```{r}
+plot_indicatorStatusAndTrend("Forest area as a percentage of total land area")
+
+```
+
+### Extent of intact forest landscapes
+
+```{r}
+plot_indicatorStatusAndTrend("Intact Forest Landscape extent")
+```
+
+### Extent of marine wilderness
+
+```{r}
+plot_indicatorStatusAndTrend("Marine wilderness %")
+```
+
+### Extent of terrestrial wilderness
+
+```{r}
+plot_indicatorStatusAndTrend("Global wilderness extent (km2)")
+```
+
+### Fraction of ocean not fished per year
+
+```{r}
+plot_indicatorStatusAndTrend("Ocean not fished in given year")
+
+```
+
+### Land not cultivated or urban
+
+```{r}
+plot_indicatorStatusAndTrend("Land not cropland or urban (overall)")
+plot_indicatorStatusAndTrend("Land not cropland or urban - hotspot")
+plot_indicatorStatusAndTrend("Land not cropland or urban - indigenous land")
+plot_indicatorStatusAndTrend("Land not cropland or urban - tundra & mountains")
+plot_indicatorStatusAndTrend("Land not cropland or urban - deserts & drylands")
+plot_indicatorStatusAndTrend("Land not cropland or urban - temperate forests")
+plot_indicatorStatusAndTrend("Land not cropland or urban - Mediterranean forests")
+plot_indicatorStatusAndTrend("Land not cropland or urban - tropical grassland")
+plot_indicatorStatusAndTrend("Land not cropland or urban - tropical forests")
+plot_indicatorStatusAndTrend("Land not cropland or urban - temperate grassland")
+
+
+```
+
+### Leaf Area Index
+
+```{r}
+plot_indicatorStatusAndTrend("Leaf Area Index")
+```
+
+### Mangrove forest area
+
+```{r}
+plot_indicatorStatusAndTrend("Area of mangrove forest cover (km2)")
+
+```
+
+### Natural habitat extent
+
+```{r}
+plot_indicatorStatusAndTrend("Percentage natural habitat extent")
+
+```
+
+### Percentage of live coral cover
+
+```{r}
+plot_indicatorStatusAndTrend("Percentage live coral cover")
+
+```
+
+### Permanent surface water extent
+
+```{r}
+plot_indicatorStatusAndTrend("Permanent surface water extent")
+```
+
+### Remaining primary vegetation
+
+```{r}
+plot_indicatorStatusAndTrend("Percentage primary LUH2")
+plot_indicatorStatusAndTrend("Primary vegetation (Hotspots)")
+plot_indicatorStatusAndTrend("Primary vegetation (Indigenous lands)")
+
+```
+
+### Seagrass meadow area
+
+```{r}
+plot_indicatorStatusAndTrend("Seagrass meadow extent")
+```
+
+### Soil organic carbon (correlative model)
+
+```{r}
+plot_indicatorStatusAndTrend("Soil organic carbon")
+
+```
+
+### Soil organic carbon (mechanistic models)
+
+```{r}
+plot_indicatorStatusAndTrend("cSoil (PgC)")
+```
+
+### Tree cover
+
+```{r}
+plot_indicatorStatusAndTrend("Tree cover change (Song)")
+
+```
+
+### Vegetation biomass (mechanistic model)
+
+```{r}
+plot_indicatorStatusAndTrend("cVeg (PgC)")
+```
+
+### Wetland Extent Trends index
+
+```{r}
+plot_indicatorStatusAndTrend("Wetland Extent Trends Index")
+```
+
+## Indicators of ecosystem function
+
+### Biological pump efficiency
+
+```{r}
+plot_indicatorStatusAndTrend("Biological pump efficiency")
+```
+
+### Biomass turnover rate
+
+```{r}
+plot_indicatorStatusAndTrend("Biomass turnover rate")
+```
+
+### Evapotranspiration (model ensemble)
+
+```{r}
+plot_indicatorStatusAndTrend("Evapotranspiration (1000km3/year)")
+```
+
+### Marine net primary productivity (remote-sensing)
+
+```{r}
+plot_indicatorStatusAndTrend("Ocean Net Primary Productivity (PgC)")
+```
+
+### NPP remaining in terrestrial ecosystems
+
+```{r}
+plot_indicatorStatusAndTrend("NPP_eco (Pg C)")
+```
+
+### Oceanic carbon sequestration
+
+```{r}
+plot_indicatorStatusAndTrend("Ocean carbon sink PgC")	
+
+```
+
+### Terrestrial carbon sequestration (model ensemble)
+
+```{r}
+plot_indicatorStatusAndTrend("NBP (PgC/yr)")	
+```
+
+### Terrestrial NPP (model ensemble)
+
+```{r}
+plot_indicatorStatusAndTrend("NPP (PgC/yr)")	
+```
+
+```{r}
+#plot_indicatorStatusAndTrend("GPP (PgC/yr)") ERROR: no dataset yet
+```
+
+### Terrestrial NPP (remote-sensing)
+
+```{r}
+plot_indicatorStatusAndTrend("Terrestrial Net Primary Productivity (PgC)")	
+```
+
+## Indicators of community composition – local scale
+
+### Biodiversity Intactness Index (overall)
+
+```{r}
+plot_indicatorStatusAndTrend("Biodiversity Intactness Index (global)")	
+plot_indicatorStatusAndTrend("BII (Hotspots)")	
+plot_indicatorStatusAndTrend("BII (Indigenous Lands)")	
+```
+
+Subset: Tropical Forest BII
+
+```{r}
+plot_indicatorStatusAndTrend("Biodiversity Intactness Index (tropical forest only)")		
+plot_indicatorStatusAndTrend("BII tropical forest (Hotspots)")		
+plot_indicatorStatusAndTrend("BII tropical forest (Indigenous Lands)")		
+
+
+```
+
+### Local species richness (BioTime)
+
+```{r}
+plot_indicatorStatusAndTrend("BioTime Local Species Richness")	
+
+```
+
+### Local species richness (PREDICTS)
+
+```{r}
+plot_indicatorStatusAndTrend("PREDICTS SR-weighted mean local species richness (global)")
+
+```
+
+### Mean Species Abundance index
+
+```{r}
+plot_indicatorStatusAndTrend("Mean Species Abundance LU")
+plot_indicatorStatusAndTrend("Mean Species Abundance CC")
+plot_indicatorStatusAndTrend("MSA (hotspots)")
+plot_indicatorStatusAndTrend("MSA (IL)")
+```
+
+## Indicators of community composition – regional scale
+
+### Bird species per grid cell (cSAR)
+
+#plot_indicatorStatusAndTrend("sar_iDiv_Allbirds_Localtoglobal.csv")
+
+```{r}
+plot_indicatorStatusAndTrend("cSAR Local results aggregated to Global all birds")
+
+```
+
+Subset: Forest-specialist bird species per grid cell (cSAR)
+
+```{r}
+plot_indicatorStatusAndTrend("cSAR Local results aggregated to Global forest specialists")
+
+```
+
+### Cumulative number of alien species
+
+```{r}
+plot_indicatorStatusAndTrend("Cumulative number of alien species")
+```
+
+### Cumulative introduced invasive aliens
+
+```{r}
+plot_indicatorStatusAndTrend("Number of invasive alien species introductions")
+
+```
+
+### Functional intactness (Madingley)
+
+```{r}
+ plot_indicatorStatusAndTrend("Madingley functional richness (50%quantile)")  
+```
+
+### Species richness per grid cell (AIM)
+
+```{r}
+plot_indicatorStatusAndTrend("Change in grid-cell species richness (all taxa) - AIM") 
+plot_indicatorStatusAndTrend("Change in grid-cell species richness (amphibians) - AIM") 
+plot_indicatorStatusAndTrend("Change in grid-cell species richness (birds) - AIM") 
+plot_indicatorStatusAndTrend("Change in grid-cell species richness (mammals) - AIM") 
+plot_indicatorStatusAndTrend("Change in grid-cell species richness (plants - AIM") 
+plot_indicatorStatusAndTrend("Change in grid-cell species richness (reptiles) - AIM") 
+
+```
+
+## Indicators of species population – species persistence
+
+### Biodiversity Habitat Index (species persistence)
+
+```{r}
+plot_indicatorStatusAndTrend("All-taxa richness (BILBI)") 
+plot_indicatorStatusAndTrend("All-taxa richness (BILBI) - hotspots") 
+plot_indicatorStatusAndTrend("Invertebrate habitat (BILBI)") 
+plot_indicatorStatusAndTrend("Plant richness (BILBI)") 
+plot_indicatorStatusAndTrend("Vertebrate habitat (BILBI)") 
+
+```
+
+### Global bird species richness change (cSAR)
+
+```{r}
+plot_indicatorStatusAndTrend("cSAR Global calculation all birds")
+
+```
+
+Subset: Global forest-specialist bird richness (cSAR)
+
+```{r}
+plot_indicatorStatusAndTrend("cSAR Global calculation forest specialists")
+
+```
+
+### Global mammal and bird species remaining
+
+```{r}
+plot_indicatorStatusAndTrend("Numbers of extant mammal and bird species") 
+
+```
+
+### Red List Index (overall)
+
+```{r}
+plot_indicatorStatusAndTrend("Red List Index") 
+
+```
+
+Subset: Red List Index (species used in food and medicine)
+
+```{r}
+# plot_indicatorStatusAndTrend("Red List Index (species used for food and medicine) ") ERROR: does ont find name
+
+```
+
+Subset: Red List Index (forest specialists)
+
+```{r}
+plot_indicatorStatusAndTrend("Red List index (forest specialists)") 
+
+```
+
+Subset: Red List Index (pollinators)
+
+```{r}
+#plot_indicatorStatusAndTrend("Red List Index (pollinator species)") ERROR name not found
+```
+
+Subset: Red List Index (internationally traded species)
+
+```{r}
+plot_indicatorStatusAndTrend("Red List Index (internationally traded species)")
+
+```
+
+Subset: Red List Index (wild relatives)
+
+```{r}
+#plot_indicatorStatusAndTrend("Red List Index (wild relatives of farmed and domesticated species) ") ERROR does not find name
+
+```
+
+### Driver-specific Red List Indices
+
+Subset: Red List Index (impacts of invasive alien species)
+
+```{r}
+plot_indicatorStatusAndTrend("Red List Index (impacts of invasive alien species)")
+
+```
+
+Red List Index (impacts of utilisation)
+
+```{r}
+plot_indicatorStatusAndTrend("Red List Index (impacts of utilisation)")
+```
+
+Red List Index (Impacts of pollution)
+
+```{r}
+plot_indicatorStatusAndTrend("Red List Index (impacts of pollution)")
+
+```
+
+Red List Index (Impacts of fisheries)
+
+```{r}
+plot_indicatorStatusAndTrend("Red List Index (impacts of fisheries)")
+```
+
+## Indicators of species population – geographic distribution
+
+### Extent of suitable habitat (mammals)
+
+```{r}
+plot_indicatorStatusAndTrend("Extent of Suitable Habitat")
+
+```
+
+### Mammalian range size
+
+```{r}
+plot_indicatorStatusAndTrend("Terrestrial mammal grid cells")
+```
+
+Subset: Megafaunal range size
+
+```{r}
+plot_indicatorStatusAndTrend("Terrestrial megafaunal grid cells")
+```
+
+### Species Habitat Index
+
+```{r}
+plot_indicatorStatusAndTrend("Species Habitat Index")
+
+```
+
+## Indicators of species population – population size
+
+### Fish stocks biologically sustainable
+
+```{r}
+plot_indicatorStatusAndTrend("Proportion of fish stocks within biologically sustainable levels")
+
+```
+
+### Living Planet Index
+
+```{r}
+#plot_indicatorStatusAndTrend("Living Planet Index (overall) ") # name
+plot_indicatorStatusAndTrend("Freshwater LPI")
+plot_indicatorStatusAndTrend("Marine LPI")
+plot_indicatorStatusAndTrend("Terrestrial LPI")
+```
+
+### Predatory fish biomass
+
+```{r}
+plot_indicatorStatusAndTrend("Predatory sea fish biomass")
+```
+
+### Prey fish biomass
+
+```{r}
+plot_indicatorStatusAndTrend("Prey sea fish biomass")
+```
+
+### Wild Bird Index (habitat specialists)
+
+```{r}
+plot_indicatorStatusAndTrend("Wild Bird Index (habitat specialists)")
+
+```
+
+### Wild mammal biomass
+
+```{r}
+plot_indicatorStatusAndTrend("Wild mammal biomass")
+```
+
+## Indicators of species traits
+
+### Functional richness (Madingley)
+
+```{r}
+plot_indicatorStatusAndTrend("Madingley functional richness (50%quantile)")
+
+```
+
+### Mammalian body mass
+
+```{r}
+plot_indicatorStatusAndTrend("Median mammalian body mass")
+
+```
+
+### Region-based Marine Trophic Index
+
+```{r}
+plot_indicatorStatusAndTrend("Marine Trophic Index")
+
+```
