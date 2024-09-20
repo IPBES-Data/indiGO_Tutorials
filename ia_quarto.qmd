@@ -6,8 +6,8 @@ execute:
 format:
   html:
     number-sections: true
-    toc: true        # Include table of contents
-    toc-depth: 3     # Specify depth of toc (optional)
+    toc: true        
+    toc-depth: 3    
 ---
 
 # Overview
@@ -19,15 +19,13 @@ The IA R-package provides an open-access framework that enables users to access 
 Please note that while the IA R-package is developed with reference to the IPBES report, IPBES does not assume any accountability for the contents or outputs of the package.
 
 ```{r, echo=FALSE}
-#set local R library path, please change for personal use
-.libPaths("/home/data3/R/x86_64-pc-linux-gnu-library/4.4")
-
-#load Indicator Analysis Package
-library(IA)
-
-#load further packages dor displaying in this document 
+#load packages 
+library(devtools)
 library(kableExtra)
 
+#install and load Indicator Analysis Package
+devtools::install_github("hetzerj/IA")
+library(IA)
 ```
 
 # Summary of Indicators
@@ -47,32 +45,32 @@ The package provides several features for exploring and displaying indicators. B
 
 To obtain an overview of the available indicators and their names, the `print_indicatorNames()` function can be used:
 
-```{r}
+```{r, fig.width=15, fig.height=5}
 print_indicatorNames()
 ```
 
 From this list, an indicator, such as "Aboveground biomass (PgC)", can be selected for further investigation. Once an indicator is chosen, the corresponding data can be loaded using the `load_indicatorData()` function:
 
-```{r}
+```{r, fig.width=15, fig.height=5}
 load_indicatorData("Percentage natural habitat extent")
 ```
 
 To visualize the global status of the selected indicator in a manner consistent with the IPBES Annex, the `plot_absoluteValue()` function can be applied. This function presents the absolute values, representing the globally aggregated data over time in its original units.
 
-```{r}
+```{r, fig.width=15, fig.height=5}
 plot_absoluteValue("Percentage natural habitat extent")
 ```
 
-Trends over time can be examined using the `plot_trendLine()` function, while changes since 1970 can be assessed with `plot_changeSince1970()`, displaying the globally aggregated value standardized to a percentage or relative to its 1970 value.
+Trends over time in comparison o a pristine world can be examined using the `plot_percentageRemaining()` function, while changes since 1970 can be assessed with `plot_changeSince1970()`, displaying the globally aggregated value standardized to a percentage or relative to its 1970 value.
 
-```{r}
-plot_trendLine("Percentage natural habitat extent")
+```{r, fig.width=15, fig.height=5}
+plot_percentageRemaining("Percentage natural habitat extent")
 plot_changeSince1970("Percentage natural habitat extent")
 ```
 
 Finally, to display both the status and trends of the indicator side by side, the `plot_indicatorStatusAndTrend()` function can be used:
 
-```{r}
+```{r,fig.width=15, fig.height=5}
 plot_indicatorStatusAndTrend("Percentage natural habitat extent")
 ```
 
@@ -82,13 +80,13 @@ plot_indicatorStatusAndTrend("Percentage natural habitat extent")
 
 ### Aboveground biomass
 
-```{r}
+```{r, fig.width=15, fig.height=5}
 plot_indicatorStatusAndTrend("Aboveground biomass (PgC)")
 ```
 
 ### Biodiversity Habitat Index (overall habitat integrity)
 
-```{r}
+```{r, fig.width=15, fig.height=5}
 plot_indicatorStatusAndTrend("All-taxa habitat (BILBI)")
 plot_indicatorStatusAndTrend("All-taxa habitat (BILBI) - hotspots")
 plot_indicatorStatusAndTrend("Invertebrate habitat (BILBI)")
@@ -98,53 +96,53 @@ plot_indicatorStatusAndTrend("Vertebrate habitat (BILBI)")
 
 ### Coastal protection habitats
 
-```{r}
+```{r, fig.width=15, fig.height=5}
 plot_indicatorStatusAndTrend("Extent and condition of coastal protection habitats")
 
 ```
 
 Subset: Coastal carbon-rich habitat
 
-```{r}
+```{r, fig.width=15, fig.height=5}
 plot_indicatorStatusAndTrend("Extent and condition of natural coastal carbon sinks")
 
 ```
 
 ### Extent of forests
 
-```{r}
+```{r, fig.width=15, fig.height=5}
 plot_indicatorStatusAndTrend("Forest area as a percentage of total land area")
 
 ```
 
 ### Extent of intact forest landscapes
 
-```{r}
+```{r, fig.width=15, fig.height=5}
 plot_indicatorStatusAndTrend("Intact Forest Landscape extent")
 ```
 
 ### Extent of marine wilderness
 
-```{r}
+```{r, fig.width=15, fig.height=5}
 plot_indicatorStatusAndTrend("Marine wilderness %")
 ```
 
 ### Extent of terrestrial wilderness
 
-```{r}
+```{r, fig.width=15, fig.height=5}
 plot_indicatorStatusAndTrend("Global wilderness extent (km2)")
 ```
 
 ### Fraction of ocean not fished per year
 
-```{r}
+```{r, fig.width=15, fig.height=5}
 plot_indicatorStatusAndTrend("Ocean not fished in given year")
 
 ```
 
 ### Land not cultivated or urban
 
-```{r}
+```{r, fig.width=15, fig.height=5}
 plot_indicatorStatusAndTrend("Land not cropland or urban (overall)")
 plot_indicatorStatusAndTrend("Land not cropland or urban - hotspot")
 plot_indicatorStatusAndTrend("Land not cropland or urban - indigenous land")
@@ -161,40 +159,40 @@ plot_indicatorStatusAndTrend("Land not cropland or urban - temperate grassland")
 
 ### Leaf Area Index
 
-```{r}
+```{r, fig.width=15, fig.height=5}
 plot_indicatorStatusAndTrend("Leaf Area Index")
 ```
 
 ### Mangrove forest area
 
-```{r}
+```{r, fig.width=15, fig.height=5}
 plot_indicatorStatusAndTrend("Area of mangrove forest cover (km2)")
 
 ```
 
 ### Natural habitat extent
 
-```{r}
+```{r, fig.width=15, fig.height=5}
 plot_indicatorStatusAndTrend("Percentage natural habitat extent")
 
 ```
 
 ### Percentage of live coral cover
 
-```{r}
+```{r, fig.width=15, fig.height=5}
 plot_indicatorStatusAndTrend("Percentage live coral cover")
 
 ```
 
 ### Permanent surface water extent
 
-```{r}
+```{r, fig.width=15, fig.height=5}
 plot_indicatorStatusAndTrend("Permanent surface water extent")
 ```
 
 ### Remaining primary vegetation
 
-```{r}
+```{r, fig.width=15, fig.height=5}
 plot_indicatorStatusAndTrend("Percentage primary LUH2")
 plot_indicatorStatusAndTrend("Primary vegetation (Hotspots)")
 plot_indicatorStatusAndTrend("Primary vegetation (Indigenous lands)")
@@ -203,39 +201,39 @@ plot_indicatorStatusAndTrend("Primary vegetation (Indigenous lands)")
 
 ### Seagrass meadow area
 
-```{r}
+```{r, fig.width=15, fig.height=5}
 plot_indicatorStatusAndTrend("Seagrass meadow extent")
 ```
 
 ### Soil organic carbon (correlative model)
 
-```{r}
+```{r, fig.width=15, fig.height=5}
 plot_indicatorStatusAndTrend("Soil organic carbon")
 
 ```
 
 ### Soil organic carbon (mechanistic models)
 
-```{r}
+```{r, fig.width=15, fig.height=5}
 plot_indicatorStatusAndTrend("cSoil (PgC)")
 ```
 
 ### Tree cover
 
-```{r}
+```{r, fig.width=15, fig.height=5}
 plot_indicatorStatusAndTrend("Tree cover change (Song)")
 
 ```
 
 ### Vegetation biomass (mechanistic model)
 
-```{r}
+```{r, fig.width=15, fig.height=5}
 plot_indicatorStatusAndTrend("cVeg (PgC)")
 ```
 
 ### Wetland Extent Trends index
 
-```{r}
+```{r, fig.width=15, fig.height=5}
 plot_indicatorStatusAndTrend("Wetland Extent Trends Index")
 ```
 
@@ -243,60 +241,60 @@ plot_indicatorStatusAndTrend("Wetland Extent Trends Index")
 
 ### Biological pump efficiency
 
-```{r}
+```{r, fig.width=15, fig.height=5}
 plot_indicatorStatusAndTrend("Biological pump efficiency")
 ```
 
 ### Biomass turnover rate
 
-```{r}
+```{r, fig.width=15, fig.height=5}
 plot_indicatorStatusAndTrend("Biomass turnover rate")
 ```
 
 ### Evapotranspiration (model ensemble)
 
-```{r}
+```{r, fig.width=15, fig.height=5}
 plot_indicatorStatusAndTrend("Evapotranspiration (1000km3/year)")
 ```
 
 ### Marine net primary productivity (remote-sensing)
 
-```{r}
+```{r, fig.width=15, fig.height=5}
 plot_indicatorStatusAndTrend("Ocean Net Primary Productivity (PgC)")
 ```
 
 ### NPP remaining in terrestrial ecosystems
 
-```{r}
+```{r, fig.width=15, fig.height=5}
 plot_indicatorStatusAndTrend("NPP_eco (Pg C)")
 ```
 
 ### Oceanic carbon sequestration
 
-```{r}
+```{r, fig.width=15, fig.height=5}
 plot_indicatorStatusAndTrend("Ocean carbon sink PgC")	
 
 ```
 
 ### Terrestrial carbon sequestration (model ensemble)
 
-```{r}
+```{r, fig.width=15, fig.height=5}
 plot_indicatorStatusAndTrend("NBP (PgC/yr)")	
 ```
 
 ### Terrestrial NPP (model ensemble)
 
-```{r}
+```{r, fig.width=15, fig.height=5}
 plot_indicatorStatusAndTrend("NPP (PgC/yr)")	
 ```
 
-```{r}
+```{r, fig.width=15, fig.height=5}
 #plot_indicatorStatusAndTrend("GPP (PgC/yr)") ERROR: no dataset yet
 ```
 
 ### Terrestrial NPP (remote-sensing)
 
-```{r}
+```{r, fig.width=15, fig.height=5}
 plot_indicatorStatusAndTrend("Terrestrial Net Primary Productivity (PgC)")	
 ```
 
@@ -304,7 +302,7 @@ plot_indicatorStatusAndTrend("Terrestrial Net Primary Productivity (PgC)")
 
 ### Biodiversity Intactness Index (overall)
 
-```{r}
+```{r, fig.width=15, fig.height=5}
 plot_indicatorStatusAndTrend("Biodiversity Intactness Index (global)")	
 plot_indicatorStatusAndTrend("BII (Hotspots)")	
 plot_indicatorStatusAndTrend("BII (Indigenous Lands)")	
@@ -312,7 +310,7 @@ plot_indicatorStatusAndTrend("BII (Indigenous Lands)")
 
 Subset: Tropical Forest BII
 
-```{r}
+```{r, fig.width=15, fig.height=5}
 plot_indicatorStatusAndTrend("Biodiversity Intactness Index (tropical forest only)")		
 plot_indicatorStatusAndTrend("BII tropical forest (Hotspots)")		
 plot_indicatorStatusAndTrend("BII tropical forest (Indigenous Lands)")		
@@ -322,21 +320,21 @@ plot_indicatorStatusAndTrend("BII tropical forest (Indigenous Lands)")
 
 ### Local species richness (BioTime)
 
-```{r}
+```{r, fig.width=15, fig.height=5}
 plot_indicatorStatusAndTrend("BioTime Local Species Richness")	
 
 ```
 
 ### Local species richness (PREDICTS)
 
-```{r}
+```{r, fig.width=15, fig.height=5}
 plot_indicatorStatusAndTrend("PREDICTS SR-weighted mean local species richness (global)")
 
 ```
 
 ### Mean Species Abundance index
 
-```{r}
+```{r, fig.width=15, fig.height=5}
 plot_indicatorStatusAndTrend("Mean Species Abundance LU")
 plot_indicatorStatusAndTrend("Mean Species Abundance CC")
 plot_indicatorStatusAndTrend("MSA (hotspots)")
@@ -349,40 +347,40 @@ plot_indicatorStatusAndTrend("MSA (IL)")
 
 #plot_indicatorStatusAndTrend("sar_iDiv_Allbirds_Localtoglobal.csv")
 
-```{r}
+```{r, fig.width=15, fig.height=5}
 plot_indicatorStatusAndTrend("cSAR Local results aggregated to Global all birds")
 
 ```
 
 Subset: Forest-specialist bird species per grid cell (cSAR)
 
-```{r}
+```{r, fig.width=15, fig.height=5}
 plot_indicatorStatusAndTrend("cSAR Local results aggregated to Global forest specialists")
 
 ```
 
 ### Cumulative number of alien species
 
-```{r}
+```{r, fig.width=15, fig.height=5}
 plot_indicatorStatusAndTrend("Cumulative number of alien species")
 ```
 
 ### Cumulative introduced invasive aliens
 
-```{r}
+```{r, fig.width=15, fig.height=5}
 plot_indicatorStatusAndTrend("Number of invasive alien species introductions")
 
 ```
 
 ### Functional intactness (Madingley)
 
-```{r}
+```{r, fig.width=15, fig.height=5}
  plot_indicatorStatusAndTrend("Madingley functional richness (50%quantile)")  
 ```
 
 ### Species richness per grid cell (AIM)
 
-```{r}
+```{r, fig.width=15, fig.height=5}
 plot_indicatorStatusAndTrend("Change in grid-cell species richness (all taxa) - AIM") 
 plot_indicatorStatusAndTrend("Change in grid-cell species richness (amphibians) - AIM") 
 plot_indicatorStatusAndTrend("Change in grid-cell species richness (birds) - AIM") 
@@ -396,7 +394,7 @@ plot_indicatorStatusAndTrend("Change in grid-cell species richness (reptiles) - 
 
 ### Biodiversity Habitat Index (species persistence)
 
-```{r}
+```{r, fig.width=15, fig.height=5}
 plot_indicatorStatusAndTrend("All-taxa richness (BILBI)") 
 plot_indicatorStatusAndTrend("All-taxa richness (BILBI) - hotspots") 
 plot_indicatorStatusAndTrend("Invertebrate habitat (BILBI)") 
@@ -407,62 +405,62 @@ plot_indicatorStatusAndTrend("Vertebrate habitat (BILBI)")
 
 ### Global bird species richness change (cSAR)
 
-```{r}
+```{r, fig.width=15, fig.height=5}
 plot_indicatorStatusAndTrend("cSAR Global calculation all birds")
 
 ```
 
 Subset: Global forest-specialist bird richness (cSAR)
 
-```{r}
+```{r, fig.width=15, fig.height=5}
 plot_indicatorStatusAndTrend("cSAR Global calculation forest specialists")
 
 ```
 
 ### Global mammal and bird species remaining
 
-```{r}
+```{r, fig.width=15, fig.height=5}
 plot_indicatorStatusAndTrend("Numbers of extant mammal and bird species") 
 
 ```
 
 ### Red List Index (overall)
 
-```{r}
+```{r, fig.width=15, fig.height=5}
 plot_indicatorStatusAndTrend("Red List Index") 
 
 ```
 
 Subset: Red List Index (species used in food and medicine)
 
-```{r}
+```{r, fig.width=15, fig.height=5}
 # plot_indicatorStatusAndTrend("Red List Index (species used for food and medicine) ") ERROR: does ont find name
 
 ```
 
 Subset: Red List Index (forest specialists)
 
-```{r}
+```{r, fig.width=15, fig.height=5}
 plot_indicatorStatusAndTrend("Red List index (forest specialists)") 
 
 ```
 
 Subset: Red List Index (pollinators)
 
-```{r}
+```{r, fig.width=15, fig.height=5}
 #plot_indicatorStatusAndTrend("Red List Index (pollinator species)") ERROR name not found
 ```
 
 Subset: Red List Index (internationally traded species)
 
-```{r}
+```{r, fig.width=15, fig.height=5}
 plot_indicatorStatusAndTrend("Red List Index (internationally traded species)")
 
 ```
 
 Subset: Red List Index (wild relatives)
 
-```{r}
+```{r, fig.width=15, fig.height=5}
 #plot_indicatorStatusAndTrend("Red List Index (wild relatives of farmed and domesticated species) ") ERROR does not find name
 
 ```
@@ -471,27 +469,27 @@ Subset: Red List Index (wild relatives)
 
 Subset: Red List Index (impacts of invasive alien species)
 
-```{r}
+```{r, fig.width=15, fig.height=5}
 plot_indicatorStatusAndTrend("Red List Index (impacts of invasive alien species)")
 
 ```
 
 Red List Index (impacts of utilisation)
 
-```{r}
+```{r, fig.width=15, fig.height=5}
 plot_indicatorStatusAndTrend("Red List Index (impacts of utilisation)")
 ```
 
 Red List Index (Impacts of pollution)
 
-```{r}
+```{r, fig.width=15, fig.height=5}
 plot_indicatorStatusAndTrend("Red List Index (impacts of pollution)")
 
 ```
 
 Red List Index (Impacts of fisheries)
 
-```{r}
+```{r, fig.width=15, fig.height=5}
 plot_indicatorStatusAndTrend("Red List Index (impacts of fisheries)")
 ```
 
@@ -499,26 +497,26 @@ plot_indicatorStatusAndTrend("Red List Index (impacts of fisheries)")
 
 ### Extent of suitable habitat (mammals)
 
-```{r}
+```{r, fig.width=15, fig.height=5}
 plot_indicatorStatusAndTrend("Extent of Suitable Habitat")
 
 ```
 
 ### Mammalian range size
 
-```{r}
+```{r, fig.width=15, fig.height=5}
 plot_indicatorStatusAndTrend("Terrestrial mammal grid cells")
 ```
 
 Subset: Megafaunal range size
 
-```{r}
+```{r, fig.width=15, fig.height=5}
 plot_indicatorStatusAndTrend("Terrestrial megafaunal grid cells")
 ```
 
 ### Species Habitat Index
 
-```{r}
+```{r, fig.width=15, fig.height=5}
 plot_indicatorStatusAndTrend("Species Habitat Index")
 
 ```
@@ -527,14 +525,14 @@ plot_indicatorStatusAndTrend("Species Habitat Index")
 
 ### Fish stocks biologically sustainable
 
-```{r}
+```{r, fig.width=15, fig.height=5}
 plot_indicatorStatusAndTrend("Proportion of fish stocks within biologically sustainable levels")
 
 ```
 
 ### Living Planet Index
 
-```{r}
+```{r, fig.width=15, fig.height=5}
 #plot_indicatorStatusAndTrend("Living Planet Index (overall) ") # name
 plot_indicatorStatusAndTrend("Freshwater LPI")
 plot_indicatorStatusAndTrend("Marine LPI")
@@ -543,26 +541,26 @@ plot_indicatorStatusAndTrend("Terrestrial LPI")
 
 ### Predatory fish biomass
 
-```{r}
+```{r, fig.width=15, fig.height=5}
 plot_indicatorStatusAndTrend("Predatory sea fish biomass")
 ```
 
 ### Prey fish biomass
 
-```{r}
+```{r, fig.width=15, fig.height=5}
 plot_indicatorStatusAndTrend("Prey sea fish biomass")
 ```
 
 ### Wild Bird Index (habitat specialists)
 
-```{r}
+```{r, fig.width=15, fig.height=5}
 plot_indicatorStatusAndTrend("Wild Bird Index (habitat specialists)")
 
 ```
 
 ### Wild mammal biomass
 
-```{r}
+```{r, fig.width=15, fig.height=5}
 plot_indicatorStatusAndTrend("Wild mammal biomass")
 ```
 
@@ -570,21 +568,21 @@ plot_indicatorStatusAndTrend("Wild mammal biomass")
 
 ### Functional richness (Madingley)
 
-```{r}
+```{r, fig.width=15, fig.height=5}
 plot_indicatorStatusAndTrend("Madingley functional richness (50%quantile)")
 
 ```
 
 ### Mammalian body mass
 
-```{r}
+```{r, fig.width=15, fig.height=5}
 plot_indicatorStatusAndTrend("Median mammalian body mass")
 
 ```
 
 ### Region-based Marine Trophic Index
 
-```{r}
+```{r, fig.width=15, fig.height=5}
 plot_indicatorStatusAndTrend("Marine Trophic Index")
 
 ```

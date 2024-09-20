@@ -1,5 +1,12 @@
 project:
   title: "IA_quarto"
-
+  type: website
+  output-dir: docs
+output:
+  html:
+    self-contained: true
 editor: visual
+
+
+
 
