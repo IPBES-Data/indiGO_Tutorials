@@ -19,7 +19,7 @@ The goal of this project is to provide a comprehensive guide on how to use the *
 
 ## How to Access the Quarto Project
 
-The Quarto project is rendered as a website using GitHub Pages. You can access the live version of the documentation [here](https://your-username.github.io/IA_quarto/).
+The Quarto project is rendered as a website using GitHub Pages. You can access the live version of the documentation [here](https://hetzerj.github.io/IA_quarto/).
 
 ## Download and Install the IA R Package
 
