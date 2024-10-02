@@ -1,5 +1,5 @@
 ---
-title: "Indicator Analyses with the IA R-Package"
+title: "How to use: The indiGO R Package"
 author: Jessica Hetzer (jessica.hetzer@senckenberg.de)
 execute:
   warning: false
@@ -12,66 +12,72 @@ format:
 
 # Overview
 
-This Quarto project demonstrates the usage of the **IA (Indicator Analysis)** R-package, which is designed to systematically display and standardize global indicators of the status and the trends in nature.
+The **indiGO R-package** provides an open-access framework that enables users to access annually and globally aggregated indicators as described in the [first Global Assessment Report on Biodiversity and Ecosystem Services](https://doi.org/10.5281/zenodo.3831673) of the Intergovernmental Science-Policy Platform on Biodiversity and Ecosystem Services (IPBES, 2019). It follows the standardization of indicators outlined in the supplemental material of the Global Assessment Report, [Chapter 2.2: Status and Trends – Nature](https://doi.org/10.5281/zenodo.3832005).
 
-The IA R-package provides an open-access framework that enables users to access annually and globally aggregated indicators as described and standardized in the *IPBES Global Assessment Chapter 2.2 – Supplementary Material: Indicators of Status & Trends in Nature*. Furthermore, the AI package offers R users a consistent and replicable way to analyze, plot and compare those indicators.
+The package provides a flexible framework for handling a wide variety of indicators, not limited to a specific region, ecosystem, or time period. The generalized outputs are broad and adaptable, allowing users to apply them to various generalized data sets or indicator types across global or regional scales. Additionally, indiGO allows users to include their own data, enabling local data integration for customized indicator analysis.
 
-Please note that while the IA R-package is developed with reference to the IPBES report, IPBES does not assume any accountability for the contents or outputs of the package.
+Here we show how to access the data and use the functions provided by the indiGO package. As a first step, the package should be installed from github and loaded.
 
-```{r, echo=FALSE}
-#load packages 
-library(devtools)
+# Installation
+
+To install the package, run the following command in R:
+
+```{r}
+#Installation from GitHub
 library(kableExtra)
-
-#install and load Indicator Analysis Package
-devtools::install_github("hetzerj/IA")
-library(IA)
+library(devtools)
+devtools::install_github("hetzerj/indiGO")
+library(indiGO)
 ```
 
-# Summary of Indicators
+# Indicator data included
 
-In this script, we select quantitative data that represent the state of nature globally or across multiple regions. The process begins by considering IPBES Core and Highlighted indicators, along with additional data from peer-reviewed literature and other authoritative sources (see Table 1). Indicators are assigned to Essential Biodiversity Variable (EBV) classes and categorized based on their relevance to ecosystems and their sensitivity to human impacts.
+The package includes a variety of indicator data, in specific data sets that represent the state of nature globally or across multiple regions. The package focuses on the indicators defined and classified by IPBES (2019). Indicators are assigned to Essential Biodiversity Variable (EBV) classes and categorized based on their relevance to ecosystems and their sensitivity to human impacts. For an overview of the indicator meta data see Table 1, which can be displayed using the indiGO function `indi_summary()`.
 
-```{r,  echo=FALSE}
-load_indicatorSummary()%>%
+```{r}
+Tab1<-indiGO::indi_summary()
+
+Tab1%>%
   kbl(escape = FALSE, caption="Table 1: Summary of indicators used in this synthesis organised alphabetically within EBV class (and, where relevant, EBV scale). Core/Highlight/Other denotes the Knowledge & Data TSU’s evaluation of each indicator. Whole or Part of indicator denotes whether the row of the table refers to an overall indicator (e.g., Red List Index) or a subset (e.g., Red List Index of pollinators).") %>%
   kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive")) %>%
   row_spec(0, extra_css = "height: 180px; transform-origin: left", angle=-45)
 ```
 
-# Exploring AI Package Functionalities
+The package provides an internal function, `indi_search()`, to explore the available data. This function allows you to filter and display files that match a specific pattern in their filenames. For example, to list all files related to biodiversity, you can use the following:
 
-The package provides several features for exploring and displaying indicators. Below is an example demonstrating the key functions available.
-
-To obtain an overview of the available indicators and their names, the `print_indicatorNames()` function can be used:
-
-```{r, fig.width=15, fig.height=5}
-print_indicatorNames()
+```{r}
+indiGO::indi_search("biodiversity")
 ```
 
-From this list, an indicator, such as "Aboveground biomass (PgC)", can be selected for further investigation. Once an indicator is chosen, the corresponding data can be loaded using the `load_indicatorData()` function:
+Data can be loaded into the R environment using the `indi_data("indicatorName")` function. This function retrieves the data in its raw form, exactly as it is stored in the file.
 
-```{r, fig.width=15, fig.height=5}
-load_indicatorData("Percentage natural habitat extent")
+```{r}
+indi_data("biodiversity_habitat_index_hotspots")
 ```
 
-To visualize the global status of the selected indicator in a manner consistent with the IPBES Annex, the `plot_absoluteValue()` function can be applied. This function presents the absolute values, representing the globally aggregated data over time in its original units.
+#### Advanced
 
-```{r, fig.width=15, fig.height=5}
-plot_absoluteValue("Percentage natural habitat extent")
+The package provides the option to analyze local files formatted in the same way as the package's internal data (i.e., .txt files with two columns: year and value). To specify the local directory, adjust the `indicatorDataPath` option. Additionally, each indicator data file is accompanied by a corresponding `.yaml` file located in the internal folder `indicatorConfigPath`. These YAML files contain metadata and settings for plots, such as the plot title, full name, and other configurations.
+
+```{r}
+#options(indicatorDataPath = "\path\to\local\DATA\directory")
+#options(indicatorConfigPath = "\path\to\local\CONFIG\directory")
+
 ```
 
-Trends over time in comparison o a pristine world can be examined using the `plot_percentageRemaining()` function, while changes since 1970 can be assessed with `plot_changeSince1970()`, displaying the globally aggregated value standardized to a percentage or relative to its 1970 value.
+# Exploring indiGO Package Functionalities
+
+Trends over time in comparison o a pristine world can be examined using the ``` plot_scaled_to_remaining(``"indicatorName"``) ``` function, while changes since 1970 can be assessed with ``` plot_scaled_to_1970(``"indicatorName"``) ```, displaying the globally aggregated value standardized to a percentage or relative to its 1970 value.
 
 ```{r, fig.width=15, fig.height=5}
-plot_percentageRemaining("Percentage natural habitat extent")
-plot_changeSince1970("Percentage natural habitat extent")
+indiGO::plot_scaled_to_remaining("extent_of_forests")
+indiGO::plot_scaled_to_1970("extent_of_forests")
 ```
 
-Finally, to display both the status and trends of the indicator side by side, the `plot_indicatorStatusAndTrend()` function can be used:
+Finally, to display the status and trends of the indicator side by side, the `plot_indiGO()` function can be used:
 
 ```{r,fig.width=15, fig.height=5}
-plot_indicatorStatusAndTrend("Percentage natural habitat extent")
+indiGO::plot_indiGO("extent_of_forests")
 ```
 
 # Display all indicators available
@@ -81,78 +87,80 @@ plot_indicatorStatusAndTrend("Percentage natural habitat extent")
 ### Aboveground biomass
 
 ```{r, fig.width=15, fig.height=5}
-plot_indicatorStatusAndTrend("Aboveground biomass (PgC)")
+indiGO::plot_indiGO("aboveground_biomass")
 ```
+
+indiGO::plot_indiGO
 
 ### Biodiversity Habitat Index (overall habitat integrity)
 
 ```{r, fig.width=15, fig.height=5}
-plot_indicatorStatusAndTrend("All-taxa habitat (BILBI)")
-plot_indicatorStatusAndTrend("All-taxa habitat (BILBI) - hotspots")
-plot_indicatorStatusAndTrend("Invertebrate habitat (BILBI)")
-plot_indicatorStatusAndTrend("Plant habitat (BILBI)")
-plot_indicatorStatusAndTrend("Vertebrate habitat (BILBI)")
+indiGO::plot_indiGO("biodiversity_habitat_index_overall")
+indiGO::plot_indiGO("biodiversity_habitat_index_hotspots")
+indiGO::plot_indiGO("biodiversity_habitat_index_invertebrates")
+indiGO::plot_indiGO("biodiversity_habitat_index_plants")
+indiGO::plot_indiGO("biodiversity_habitat_index_vertebrates")
 ```
 
 ### Coastal protection habitats
 
 ```{r, fig.width=15, fig.height=5}
-plot_indicatorStatusAndTrend("Extent and condition of coastal protection habitats")
+indiGO::plot_indiGO("coastal_protection_habitats_overall")
 
 ```
 
 Subset: Coastal carbon-rich habitat
 
 ```{r, fig.width=15, fig.height=5}
-plot_indicatorStatusAndTrend("Extent and condition of natural coastal carbon sinks")
+indiGO::plot_indiGO("coastal_protection_habitats_natural")
 
 ```
 
 ### Extent of forests
 
 ```{r, fig.width=15, fig.height=5}
-plot_indicatorStatusAndTrend("Forest area as a percentage of total land area")
+indiGO::plot_indiGO("extent_of_forests")
 
 ```
 
 ### Extent of intact forest landscapes
 
 ```{r, fig.width=15, fig.height=5}
-plot_indicatorStatusAndTrend("Intact Forest Landscape extent")
+indiGO::plot_indiGO("extent_of_intact_forest_landscapes")
 ```
 
 ### Extent of marine wilderness
 
 ```{r, fig.width=15, fig.height=5}
-plot_indicatorStatusAndTrend("Marine wilderness %")
+indiGO::plot_indiGO("extent_of_marine_wilderness")
 ```
 
 ### Extent of terrestrial wilderness
 
 ```{r, fig.width=15, fig.height=5}
-plot_indicatorStatusAndTrend("Global wilderness extent (km2)")
+indiGO::plot_indiGO("extent_of_terrestrial_wilderness")
 ```
 
 ### Fraction of ocean not fished per year
 
 ```{r, fig.width=15, fig.height=5}
-plot_indicatorStatusAndTrend("Ocean not fished in given year")
+indiGO::plot_indiGO("fraction_of_ocean_not_fished_per_year")
 
 ```
 
 ### Land not cultivated or urban
 
 ```{r, fig.width=15, fig.height=5}
-plot_indicatorStatusAndTrend("Land not cropland or urban (overall)")
-plot_indicatorStatusAndTrend("Land not cropland or urban - hotspot")
-plot_indicatorStatusAndTrend("Land not cropland or urban - indigenous land")
-plot_indicatorStatusAndTrend("Land not cropland or urban - tundra & mountains")
-plot_indicatorStatusAndTrend("Land not cropland or urban - deserts & drylands")
-plot_indicatorStatusAndTrend("Land not cropland or urban - temperate forests")
-plot_indicatorStatusAndTrend("Land not cropland or urban - Mediterranean forests")
-plot_indicatorStatusAndTrend("Land not cropland or urban - tropical grassland")
-plot_indicatorStatusAndTrend("Land not cropland or urban - tropical forests")
-plot_indicatorStatusAndTrend("Land not cropland or urban - temperate grassland")
+indiGO::plot_indiGO("land_not_cultivated_or_urban_overall")
+indiGO::plot_indiGO("land_not_cultivated_or_urban_hotspot")
+indiGO::plot_indiGO("land_not_cultivated_or_urban_indigenous_land")
+indiGO::plot_indiGO("land_not_cultivated_or_urban_tundra_and_mountains")
+indiGO::plot_indiGO("land_not_cultivated_or_urban_desert_and_drylands")
+indiGO::plot_indiGO("land_not_cultivated_or_urban_temperate_forests")
+indiGO::plot_indiGO("land_not_cultivated_or_urban_mediterranean_forests")
+indiGO::plot_indiGO("land_not_cultivated_or_urban_tropical_grassland")
+indiGO::plot_indiGO("land_not_cultivated_or_urban_tropical_forests")
+indiGO::plot_indiGO("land_not_cultivated_or_urban_temperate_grassland")
 
 
 ```
@@ -160,81 +168,81 @@ plot_indicatorStatusAndTrend("Land not cropland or urban - temperate grassland")
 ### Leaf Area Index
 
 ```{r, fig.width=15, fig.height=5}
-plot_indicatorStatusAndTrend("Leaf Area Index")
+#indiGO::plot_indiGO("leaf_area_index") JH
 ```
 
 ### Mangrove forest area
 
 ```{r, fig.width=15, fig.height=5}
-plot_indicatorStatusAndTrend("Area of mangrove forest cover (km2)")
+indiGO::plot_indiGO("mangrove_forest_area")
 
 ```
 
 ### Natural habitat extent
 
 ```{r, fig.width=15, fig.height=5}
-plot_indicatorStatusAndTrend("Percentage natural habitat extent")
+indiGO::plot_indiGO("natural_habitat_extent")
 
 ```
 
 ### Percentage of live coral cover
 
 ```{r, fig.width=15, fig.height=5}
-plot_indicatorStatusAndTrend("Percentage live coral cover")
+indiGO::plot_indiGO("percentage_of_live_coral_cover")
 
 ```
 
 ### Permanent surface water extent
 
 ```{r, fig.width=15, fig.height=5}
-plot_indicatorStatusAndTrend("Permanent surface water extent")
+indiGO::plot_indiGO("permanent_surface_water_extent")
 ```
 
 ### Remaining primary vegetation
 
 ```{r, fig.width=15, fig.height=5}
-plot_indicatorStatusAndTrend("Percentage primary LUH2")
-plot_indicatorStatusAndTrend("Primary vegetation (Hotspots)")
-plot_indicatorStatusAndTrend("Primary vegetation (Indigenous lands)")
+indiGO::plot_indiGO("remaining_primary_vegetation")
+indiGO::plot_indiGO("remaining_primary_vegetation_hotspot")
+indiGO::plot_indiGO("remaining_primary_vegetation_indigenous_land")
 
 ```
 
 ### Seagrass meadow area
 
 ```{r, fig.width=15, fig.height=5}
-plot_indicatorStatusAndTrend("Seagrass meadow extent")
+indiGO::plot_indiGO("seagrass_meadow_area")
 ```
 
 ### Soil organic carbon (correlative model)
 
 ```{r, fig.width=15, fig.height=5}
-plot_indicatorStatusAndTrend("Soil organic carbon")
+indiGO::plot_indiGO("soil_organic_carbon_correlative_model")
 
 ```
 
 ### Soil organic carbon (mechanistic models)
 
 ```{r, fig.width=15, fig.height=5}
-plot_indicatorStatusAndTrend("cSoil (PgC)")
+indiGO::plot_indiGO("soil_organic_carbon_mechanistic_models")
 ```
 
 ### Tree cover
 
 ```{r, fig.width=15, fig.height=5}
-plot_indicatorStatusAndTrend("Tree cover change (Song)")
+indiGO::plot_indiGO("tree_cover")
 
 ```
 
 ### Vegetation biomass (mechanistic model)
 
 ```{r, fig.width=15, fig.height=5}
-plot_indicatorStatusAndTrend("cVeg (PgC)")
+indiGO::plot_indiGO("vegetation_biomass_mechanistic_model")
 ```
 
 ### Wetland Extent Trends index
 
 ```{r, fig.width=15, fig.height=5}
-plot_indicatorStatusAndTrend("Wetland Extent Trends Index")
+indiGO::plot_indiGO("wetland_extent_trends_index")
 ```
 
 ## Indicators of ecosystem function
@@ -242,60 +250,60 @@ plot_indicatorStatusAndTrend("Wetland Extent Trends Index")
 ### Biological pump efficiency
 
 ```{r, fig.width=15, fig.height=5}
-plot_indicatorStatusAndTrend("Biological pump efficiency")
+indiGO::plot_indiGO("biological_pump_efficiency")
 ```
 
 ### Biomass turnover rate
 
 ```{r, fig.width=15, fig.height=5}
-plot_indicatorStatusAndTrend("Biomass turnover rate")
+indiGO::plot_indiGO("biomass_turnover_rate")
 ```
 
 ### Evapotranspiration (model ensemble)
 
 ```{r, fig.width=15, fig.height=5}
-plot_indicatorStatusAndTrend("Evapotranspiration (1000km3/year)")
+indiGO::plot_indiGO("evapotranspiration_model_ensemble")
 ```
 
 ### Marine net primary productivity (remote-sensing)
 
 ```{r, fig.width=15, fig.height=5}
-plot_indicatorStatusAndTrend("Ocean Net Primary Productivity (PgC)")
+indiGO::plot_indiGO("marine_net_primary_productivity_remote_sensing")
 ```
 
 ### NPP remaining in terrestrial ecosystems
 
 ```{r, fig.width=15, fig.height=5}
-plot_indicatorStatusAndTrend("NPP_eco (Pg C)")
+indiGO::plot_indiGO("npp_remaining_in_terrestrial_ecosystems")
 ```
 
 ### Oceanic carbon sequestration
 
 ```{r, fig.width=15, fig.height=5}
-plot_indicatorStatusAndTrend("Ocean carbon sink PgC")	
+indiGO::plot_indiGO("oceanic_carbon_sequestration")	
 
 ```
 
 ### Terrestrial carbon sequestration (model ensemble)
 
 ```{r, fig.width=15, fig.height=5}
-plot_indicatorStatusAndTrend("NBP (PgC/yr)")	
+indiGO::plot_indiGO("terrestrial_carbon_sequestration_model_ensemble")	
 ```
 
 ### Terrestrial NPP (model ensemble)
 
 ```{r, fig.width=15, fig.height=5}
-plot_indicatorStatusAndTrend("NPP (PgC/yr)")	
+indiGO::plot_indiGO("terrestrial_npp_model_ensemble")	
 ```
 
 ```{r, fig.width=15, fig.height=5}
-#plot_indicatorStatusAndTrend("GPP (PgC/yr)") ERROR: no dataset yet
+#indiGO::plot_indiGO("GPP (PgC/yr)") JH ERROR: no dataset yet
 ```
 
 ### Terrestrial NPP (remote-sensing)
 
 ```{r, fig.width=15, fig.height=5}
-plot_indicatorStatusAndTrend("Terrestrial Net Primary Productivity (PgC)")	
+indiGO::plot_indiGO("terrestrial_npp_remote_sensing")	
 ```
 
 ## Indicators of community composition – local scale
@@ -303,17 +311,17 @@ plot_indicatorStatusAndTrend("Terrestrial Net Primary Productivity (PgC)")
 ### Biodiversity Intactness Index (overall)
 
 ```{r, fig.width=15, fig.height=5}
-plot_indicatorStatusAndTrend("Biodiversity Intactness Index (global)")	
-plot_indicatorStatusAndTrend("BII (Hotspots)")	
-plot_indicatorStatusAndTrend("BII (Indigenous Lands)")	
+indiGO::plot_indiGO("biodiversity_intactness_index_overall")	
+indiGO::plot_indiGO("biodiversity_intactness_index_hotspots")	
+indiGO::plot_indiGO("biodiversity_intactness_index_indigenous_land")	
 ```
 
 Subset: Tropical Forest BII
 
 ```{r, fig.width=15, fig.height=5}
-plot_indicatorStatusAndTrend("Biodiversity Intactness Index (tropical forest only)")		
-plot_indicatorStatusAndTrend("BII tropical forest (Hotspots)")		
-plot_indicatorStatusAndTrend("BII tropical forest (Indigenous Lands)")		
+indiGO::plot_indiGO("biodiversity_intactness_index_tropical_forest")		
+indiGO::plot_indiGO("biodiversity_intactness_index_tropical_hotspots") # JH forest fehlt
+indiGO::plot_indiGO("biodiversity_intactness_index_tropical_forest_indigenous_land")		
 
 
 ```
@@ -321,72 +329,72 @@ plot_indicatorStatusAndTrend("BII tropical forest (Indigenous Lands)")
 ### Local species richness (BioTime)
 
 ```{r, fig.width=15, fig.height=5}
-plot_indicatorStatusAndTrend("BioTime Local Species Richness")	
+indiGO::plot_indiGO("local_species_richness_biotime")	
 
 ```
 
 ### Local species richness (PREDICTS)
 
 ```{r, fig.width=15, fig.height=5}
-plot_indicatorStatusAndTrend("PREDICTS SR-weighted mean local species richness (global)")
+indiGO::plot_indiGO("local_species_richness_predicts")
 
 ```
 
 ### Mean Species Abundance index
 
 ```{r, fig.width=15, fig.height=5}
-plot_indicatorStatusAndTrend("Mean Species Abundance LU")
-plot_indicatorStatusAndTrend("Mean Species Abundance CC")
-plot_indicatorStatusAndTrend("MSA (hotspots)")
-plot_indicatorStatusAndTrend("MSA (IL)")
+indiGO::plot_indiGO("mean_species_abundance_index_lu")
+indiGO::plot_indiGO("mean_species_abundance_index_cc")
+indiGO::plot_indiGO("mean_species_abundance_index_hotspots")
+indiGO::plot_indiGO("mean_species_abundance_index_indigenous_land")
 ```
 
 ## Indicators of community composition – regional scale
 
 ### Bird species per grid cell (cSAR)
 
-#plot_indicatorStatusAndTrend("sar_iDiv_Allbirds_Localtoglobal.csv")
+#indiGO::plot_indiGO("sar_iDiv_Allbirds_Localtoglobal.csv")
 
 ```{r, fig.width=15, fig.height=5}
-plot_indicatorStatusAndTrend("cSAR Local results aggregated to Global all birds")
+indiGO::plot_indiGO("bird_species_per_grid_cell_csar_overall")
 
 ```
 
 Subset: Forest-specialist bird species per grid cell (cSAR)
 
 ```{r, fig.width=15, fig.height=5}
-plot_indicatorStatusAndTrend("cSAR Local results aggregated to Global forest specialists")
+indiGO::plot_indiGO("bird_species_per_grid_cell_csar_forest_specialists")
 
 ```
 
 ### Cumulative number of alien species
 
 ```{r, fig.width=15, fig.height=5}
-plot_indicatorStatusAndTrend("Cumulative number of alien species")
+indiGO::plot_indiGO("cumulative_number_of_alien_species")
 ```
 
 ### Cumulative introduced invasive aliens
 
 ```{r, fig.width=15, fig.height=5}
-plot_indicatorStatusAndTrend("Number of invasive alien species introductions")
+indiGO::plot_indiGO("cumulative_introduced_invasive_aliens")
 
 ```
 
 ### Functional intactness (Madingley)
 
 ```{r, fig.width=15, fig.height=5}
- plot_indicatorStatusAndTrend("Madingley functional richness (50%quantile)")  
+ indiGO::plot_indiGO("functional_intactness_madingley")  
 ```
 
 ### Species richness per grid cell (AIM)
 
 ```{r, fig.width=15, fig.height=5}
-plot_indicatorStatusAndTrend("Change in grid-cell species richness (all taxa) - AIM") 
-plot_indicatorStatusAndTrend("Change in grid-cell species richness (amphibians) - AIM") 
-plot_indicatorStatusAndTrend("Change in grid-cell species richness (birds) - AIM") 
-plot_indicatorStatusAndTrend("Change in grid-cell species richness (mammals) - AIM") 
-plot_indicatorStatusAndTrend("Change in grid-cell species richness (plants - AIM") 
-plot_indicatorStatusAndTrend("Change in grid-cell species richness (reptiles) - AIM") 
+indiGO::plot_indiGO("species_richness_per_grid_cell_aim_overall") 
+indiGO::plot_indiGO("species_richness_per_grid_cell_aim_amphibians") 
+indiGO::plot_indiGO("species_richness_per_grid_cell_aim_birds") 
+indiGO::plot_indiGO("species_richness_per_grid_cell_aim_mammals") 
+indiGO::plot_indiGO("species_richness_per_grid_cell_aim_plants") 
+indiGO::plot_indiGO("species_richness_per_grid_cell_aim_reptiles") 
 
 ```
 
@@ -395,73 +403,72 @@ plot_indicatorStatusAndTrend("Change in grid-cell species richness (reptiles) - 
 ### Biodiversity Habitat Index (species persistence)
 
 ```{r, fig.width=15, fig.height=5}
-plot_indicatorStatusAndTrend("All-taxa richness (BILBI)") 
-plot_indicatorStatusAndTrend("All-taxa richness (BILBI) - hotspots") 
-plot_indicatorStatusAndTrend("Invertebrate habitat (BILBI)") 
-plot_indicatorStatusAndTrend("Plant richness (BILBI)") 
-plot_indicatorStatusAndTrend("Vertebrate habitat (BILBI)") 
+indiGO::plot_indiGO("biodiversity_habitat_index_species_persistence_overall") 
+indiGO::plot_indiGO("biodiversity_habitat_index_species_persistence_hotspots") 
+indiGO::plot_indiGO("biodiversity_habitat_index_species_persistence_invertebrates") 
+indiGO::plot_indiGO("biodiversity_habitat_index_species_persistence_plants") 
+indiGO::plot_indiGO("biodiversity_habitat_index_species_persistence_vertebrates") 
 
 ```
 
 ### Global bird species richness change (cSAR)
 
 ```{r, fig.width=15, fig.height=5}
-plot_indicatorStatusAndTrend("cSAR Global calculation all birds")
+indiGO::plot_indiGO("bird_species_per_grid_cell_csar_overall")
 
 ```
 
 Subset: Global forest-specialist bird richness (cSAR)
 
 ```{r, fig.width=15, fig.height=5}
-plot_indicatorStatusAndTrend("cSAR Global calculation forest specialists")
+indiGO::plot_indiGO("bird_species_per_grid_cell_csar_forest_specialists")
 
 ```
 
 ### Global mammal and bird species remaining
 
 ```{r, fig.width=15, fig.height=5}
-plot_indicatorStatusAndTrend("Numbers of extant mammal and bird species") 
+indiGO::plot_indiGO("global_mammal_and_bird_species_remaining") 
 
 ```
 
 ### Red List Index (overall)
 
 ```{r, fig.width=15, fig.height=5}
-plot_indicatorStatusAndTrend("Red List Index") 
+indiGO::plot_indiGO("red_list_index_overall") 
 
 ```
 
 Subset: Red List Index (species used in food and medicine)
 
 ```{r, fig.width=15, fig.height=5}
-# plot_indicatorStatusAndTrend("Red List Index (species used for food and medicine) ") ERROR: does ont find name
-
+#indiGO::plot_indiGO("red_list_index_species used for food and medicine) ") JH: missing
 ```
 
 Subset: Red List Index (forest specialists)
 
 ```{r, fig.width=15, fig.height=5}
-plot_indicatorStatusAndTrend("Red List index (forest specialists)") 
+indiGO::plot_indiGO("red_list_index_forest_specialists") 
 
 ```
 
 Subset: Red List Index (pollinators)
 
 ```{r, fig.width=15, fig.height=5}
-#plot_indicatorStatusAndTrend("Red List Index (pollinator species)") ERROR name not found
+#JH: not there
 ```
 
 Subset: Red List Index (internationally traded species)
 
 ```{r, fig.width=15, fig.height=5}
-plot_indicatorStatusAndTrend("Red List Index (internationally traded species)")
+indiGO::plot_indiGO("red_list_index_internationally_traded_species")
 
 ```
 
 Subset: Red List Index (wild relatives)
 
 ```{r, fig.width=15, fig.height=5}
-#plot_indicatorStatusAndTrend("Red List Index (wild relatives of farmed and domesticated species) ") ERROR does not find name
+#indiGO::plot_indiGO("Red List Index (wild relatives of farmed and domesticated species) ") JH: ERROR does not find name
 
 ```
 
@@ -470,27 +477,27 @@ Subset: Red List Index (wild relatives)
 Subset: Red List Index (impacts of invasive alien species)
 
 ```{r, fig.width=15, fig.height=5}
-plot_indicatorStatusAndTrend("Red List Index (impacts of invasive alien species)")
+indiGO::plot_indiGO("red_list_index_impacts_of_invasive_alien_species")
 
 ```
 
 Red List Index (impacts of utilisation)
 
 ```{r, fig.width=15, fig.height=5}
-plot_indicatorStatusAndTrend("Red List Index (impacts of utilisation)")
+indiGO::plot_indiGO("red_list_index_impacts_of_utilisation")
 ```
 
 Red List Index (Impacts of pollution)
 
 ```{r, fig.width=15, fig.height=5}
-plot_indicatorStatusAndTrend("Red List Index (impacts of pollution)")
+indiGO::plot_indiGO("red_list_index_impacts_of_pollution")
 
 ```
 
 Red List Index (Impacts of fisheries)
 
 ```{r, fig.width=15, fig.height=5}
-plot_indicatorStatusAndTrend("Red List Index (impacts of fisheries)")
+indiGO::plot_indiGO("red_list_index_impacts_of_fisheries")
 ```
 
 ## Indicators of species population – geographic distribution
@@ -498,26 +505,26 @@ plot_indicatorStatusAndTrend("Red List Index (impacts of fisheries)")
 ### Extent of suitable habitat (mammals)
 
 ```{r, fig.width=15, fig.height=5}
-plot_indicatorStatusAndTrend("Extent of Suitable Habitat")
+indiGO::plot_indiGO("extent_of_suitable_habitat_mammals")
 
 ```
 
 ### Mammalian range size
 
 ```{r, fig.width=15, fig.height=5}
-plot_indicatorStatusAndTrend("Terrestrial mammal grid cells")
+indiGO::plot_indiGO("mammalian_range_size")
 ```
 
 Subset: Megafaunal range size
 
 ```{r, fig.width=15, fig.height=5}
-plot_indicatorStatusAndTrend("Terrestrial megafaunal grid cells")
+indiGO::plot_indiGO("megafaunal_range_size")
 ```
 
 ### Species Habitat Index
 
 ```{r, fig.width=15, fig.height=5}
-plot_indicatorStatusAndTrend("Species Habitat Index")
+indiGO::plot_indiGO("species_habitat_index")
 
 ```
 
@@ -526,42 +533,42 @@ plot_indicatorStatusAndTrend("Species Habitat Index")
 ### Fish stocks biologically sustainable
 
 ```{r, fig.width=15, fig.height=5}
-plot_indicatorStatusAndTrend("Proportion of fish stocks within biologically sustainable levels")
+indiGO::plot_indiGO("fish_stocks_biologically_sustainable")
 
 ```
 
 ### Living Planet Index
 
 ```{r, fig.width=15, fig.height=5}
-#plot_indicatorStatusAndTrend("Living Planet Index (overall) ") # name
-plot_indicatorStatusAndTrend("Freshwater LPI")
-plot_indicatorStatusAndTrend("Marine LPI")
-plot_indicatorStatusAndTrend("Terrestrial LPI")
+#indiGO::plot_indiGO("Living Planet Index (overall) ") # name
+indiGO::plot_indiGO("living_planet_index_freshwater")
+indiGO::plot_indiGO("living_planet_index_marine")
+indiGO::plot_indiGO("living_planet_index_terrestrial")
 ```
 
 ### Predatory fish biomass
 
 ```{r, fig.width=15, fig.height=5}
-plot_indicatorStatusAndTrend("Predatory sea fish biomass")
+indiGO::plot_indiGO("predatory_fish_biomass")
 ```
 
 ### Prey fish biomass
 
 ```{r, fig.width=15, fig.height=5}
-plot_indicatorStatusAndTrend("Prey sea fish biomass")
+indiGO::plot_indiGO("prey_fish_biomass")
 ```
 
 ### Wild Bird Index (habitat specialists)
 
 ```{r, fig.width=15, fig.height=5}
-plot_indicatorStatusAndTrend("Wild Bird Index (habitat specialists)")
+indiGO::plot_indiGO("wild_bird_index_habitat_specialists")
 
 ```
 
 ### Wild mammal biomass
 
 ```{r, fig.width=15, fig.height=5}
-plot_indicatorStatusAndTrend("Wild mammal biomass")
+indiGO::plot_indiGO("wild_mammal_biomass")
 ```
 
 ## Indicators of species traits
@@ -569,20 +576,35 @@ plot_indicatorStatusAndTrend("Wild mammal biomass")
 ### Functional richness (Madingley)
 
 ```{r, fig.width=15, fig.height=5}
-plot_indicatorStatusAndTrend("Madingley functional richness (50%quantile)")
+indiGO::plot_indiGO("functional_richness_madingley")
 
 ```
 
 ### Mammalian body mass
 
 ```{r, fig.width=15, fig.height=5}
-plot_indicatorStatusAndTrend("Median mammalian body mass")
+indiGO::plot_indiGO("mammalian_body_mass")
 
 ```
 
 ### Region-based Marine Trophic Index
 
 ```{r, fig.width=15, fig.height=5}
-plot_indicatorStatusAndTrend("Marine Trophic Index")
+indiGO::plot_indiGO("region_based_marine_trophic_index")
+
+```
+
+# Update indicators
+
+## Extent of forests
+
+```{r,warnings=FALSE}
+# use the IA.ExtentOfForests subpackage 
+# no need for loading as it is already loaded in the package
+#in case you want to download the source data to a specific repository, please enter local Path 
+# localPath=NULL 
+# 
+# is.upToDate <-IA.ExtentOfForests::download_from_origin(localPath)
+
 
 ```
