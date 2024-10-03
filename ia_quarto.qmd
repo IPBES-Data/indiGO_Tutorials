@@ -10,6 +10,11 @@ format:
     toc-depth: 3    
 ---
 
+```{r, echo=FALSE}
+library(kableExtra)
+library(devtools)
+```
+
 # Overview
 
 The **indiGO R-package** provides an open-access framework that enables users to access annually and globally aggregated indicators as described in the [first Global Assessment Report on Biodiversity and Ecosystem Services](https://doi.org/10.5281/zenodo.3831673) of the Intergovernmental Science-Policy Platform on Biodiversity and Ecosystem Services (IPBES, 2019). It follows the standardization of indicators outlined in the supplemental material of the Global Assessment Report, [Chapter 2.2: Status and Trends – Nature](https://doi.org/10.5281/zenodo.3832005).
@@ -24,8 +29,6 @@ To install the package, run the following command in R:
 
 ```{r}
 #Installation from GitHub
-library(kableExtra)
-library(devtools)
 devtools::install_github("hetzerj/indiGO")
 library(indiGO)
 ```
@@ -52,10 +55,10 @@ indiGO::indi_search("biodiversity")
 Data can be loaded into the R environment using the `indi_data("indicatorName")` function. This function retrieves the data in its raw form, exactly as it is stored in the file.
 
 ```{r}
-indi_data("biodiversity_habitat_index_hotspots")
+indiGO::indi_data("biodiversity_habitat_index_hotspots")
 ```
 
-#### Advanced
+**Advanced**
 
 The package provides the option to analyze local files formatted in the same way as the package's internal data (i.e., .txt files with two columns: year and value). To specify the local directory, adjust the `indicatorDataPath` option. Additionally, each indicator data file is accompanied by a corresponding `.yaml` file located in the internal folder `indicatorConfigPath`. These YAML files contain metadata and settings for plots, such as the plot title, full name, and other configurations.
 
@@ -163,12 +166,6 @@ indiGO::plot_indiGO("land_not_cultivated_or_urban_tropical_forests")
 indiGO::plot_indiGO("land_not_cultivated_or_urban_temperate_grassland")
 
 
-```
-
-### Leaf Area Index
-
-```{r, fig.width=15, fig.height=5}
-#indiGO::plot_indiGO("leaf_area_index") JH
 ```
 
 ### Mangrove forest area
@@ -296,10 +293,6 @@ indiGO::plot_indiGO("terrestrial_carbon_sequestration_model_ensemble")
 indiGO::plot_indiGO("terrestrial_npp_model_ensemble")	
 ```
 
-```{r, fig.width=15, fig.height=5}
-#indiGO::plot_indiGO("GPP (PgC/yr)") JH ERROR: no dataset yet
-```
-
 ### Terrestrial NPP (remote-sensing)
 
 ```{r, fig.width=15, fig.height=5}
@@ -320,7 +313,6 @@ Subset: Tropical Forest BII
 
 ```{r, fig.width=15, fig.height=5}
 indiGO::plot_indiGO("biodiversity_intactness_index_tropical_forest")		
-indiGO::plot_indiGO("biodiversity_intactness_index_tropical_hotspots") # JH forest fehlt
 indiGO::plot_indiGO("biodiversity_intactness_index_tropical_forest_indigenous_land")		
 
 
@@ -439,12 +431,6 @@ indiGO::plot_indiGO("red_list_index_overall")
 
 ```
 
-Subset: Red List Index (species used in food and medicine)
-
-```{r, fig.width=15, fig.height=5}
-#indiGO::plot_indiGO("red_list_index_species used for food and medicine) ") JH: missing
-```
-
 Subset: Red List Index (forest specialists)
 
 ```{r, fig.width=15, fig.height=5}
@@ -452,23 +438,10 @@ indiGO::plot_indiGO("red_list_index_forest_specialists")
 
 ```
 
-Subset: Red List Index (pollinators)
-
-```{r, fig.width=15, fig.height=5}
-#JH: not there
-```
-
 Subset: Red List Index (internationally traded species)
 
 ```{r, fig.width=15, fig.height=5}
 indiGO::plot_indiGO("red_list_index_internationally_traded_species")
-
-```
-
-Subset: Red List Index (wild relatives)
-
-```{r, fig.width=15, fig.height=5}
-#indiGO::plot_indiGO("Red List Index (wild relatives of farmed and domesticated species) ") JH: ERROR does not find name
 
 ```
 
