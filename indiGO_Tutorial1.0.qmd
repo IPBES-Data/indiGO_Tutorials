@@ -1,5 +1,6 @@
 ---
-title: "How to use: The indiGO R Package"
+title: "How to use the indiGO R Package"
+subtitle: "indiGo Tutorial 1.0"
 author: Jessica Hetzer (jessica.hetzer@senckenberg.de)
 execute:
   warning: false

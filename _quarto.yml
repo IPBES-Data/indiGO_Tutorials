@@ -1,5 +1,5 @@
 project:
-  title: "IA_quarto"
+  title: "indiGo Tutorial 1.0"
   type: website
   output-dir: docs
 output:
