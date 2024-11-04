@@ -1,6 +1,6 @@
-# How to use: The indiGO R Package
+# Tutorial 1.0: How to use the indiGO R Package
 
-This repository contains a Quarto project that demonstrates the usage of the **IA (Indicator Analyses)** R package. The **IA** package can be found in the [hetzerj/IA](https://github.com/hetzerj/IA) repository.
+This repository contains a Quarto project that demonstrates the usage of the he **indiGO (Indicators in Generalized Outputs)** R-package which is designed to analyze and display global indicators of the status and trends in nature in a generalized and systematic way. The indiGO package can be found in the [indiGO R package repository](https://github.com/hetzerj/indiGO).
 
 ## Overview
 
@@ -8,12 +8,17 @@ The indiGO R-package provides an open-access framework that enables users to acc
 
 The package provides a flexible framework for handling a wide variety of indicators, not limited to a specific region, ecosystem, or time period. The generalized outputs are broad and adaptable, allowing users to apply them to various generalized data sets or indicator types across global or regional scales. Additionally, indiGO allows users to include their own data, enabling local data integration for customized indicator analysis.
 
+<<<<<<< HEAD
 -   **Available Indicators**: Lists all the indicators provided by the **IA** package.
+=======
+-   **Available Indicators**: Lists all the indicators provided by the indiGO R package.
+>>>>>>> bac8815 (renaming the readme files to indiGO_Tutorial1.0)
 -   **Function Demonstrations**: Shows how the core functions of the package work, using practical examples.
 -   **Plotting Figures**: Provides instructions and examples for visualizing the indicators using the package's functions.
 
-## Key Features
+## How to Access the Tutorial
 
+<<<<<<< HEAD
 -   Displays all available indicators in the package.
 -   Demonstrates how to apply various functions within the package to analyze indicators.
 -   Shows how to generate and customize plots for visualizing indicator data.
@@ -22,10 +27,13 @@ The package provides a flexible framework for handling a wide variety of indicat
 ## How to Access the Quarto Project
 
 The Quarto project is rendered as a website using GitHub Pages. You can access the live version of the documentation [here](https://hetzerj.github.io/IA_quarto/).
+=======
+The Tutorial is rendered as a website using GitHub Pages. You can access the live version of the documentation [here](https://hetzerj.github.io/IA_quarto/).
+>>>>>>> bac8815 (renaming the readme files to indiGO_Tutorial1.0)
 
 ## Download and Install the indiGO R Package
 
-You can download and install the **indiGO** R package directly from the [hetzerj/IA](https://github.com/hetzerj/indiGO) GitHub repository using the following commands in R:
+You can download and install the **indiGO** R package directly from the [indiGO R package repository](https://github.com/hetzerj/indiGO) using the following commands in R:
 
 ``` r
 # Install devtools if not already installed
