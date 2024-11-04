@@ -1,6 +1,6 @@
 # Tutorials for the indiGO R Package
 
-This repository contains tutorials that demonstrate the usage of the he **indiGO (Indicators in Generalized Outputs)** R-package which is designed to analyze and display global indicators of the status and trends in nature in a generalized and systematic way. The indiGO package can be found in the [indiGO R package repository](https://github.com/hetzerj/indiGO).
+This repository contains tutorials that demonstrate the usage of the he **indiGO (Indicators in Generalized Outputs)** R-package which is designed to analyze and display global indicators of the status and trends in nature in a generalized and systematic way. The indiGO package can be found in the [indiGO R package repository](https://github.com/IPBES-Data/indiGO).
 
 ## Overview
 
@@ -14,7 +14,7 @@ The package provides a flexible framework for handling a wide variety of indicat
 
 ## Download and Install the indiGO R Package
 
-You can download and install the **indiGO** R package directly from the [indiGO R package repository](https://github.com/hetzerj/indiGO) using the following commands in R:
+You can download and install the **indiGO** R package directly from the [indiGO R package repository](https://github.com/IPBES-Data/indiGO) using the following commands in R:
 
 ``` r
 # Install devtools if not already installed
