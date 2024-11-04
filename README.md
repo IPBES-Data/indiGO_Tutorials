@@ -26,4 +26,4 @@ devtools::install_github("hetzerj/indiGO")
 
 ## Tutorial 1.0: How to use the indiGO R Package
 
-The Tutorial is rendered as a website using GitHub Pages. You can access the live version of the documentation here: [Tutorial 1.0: How to Use the indiGO R Package](https://hetzerj.github.io/indiGO_Tutorials/).
+The Tutorial is rendered as a website using GitHub Pages. You can access the live version of the documentation here: [Tutorial 1.0: How to Use the indiGO R Package](https://ipbes-data.github.io/indiGO_Tutorials/).
