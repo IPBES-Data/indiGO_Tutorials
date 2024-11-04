@@ -1,6 +1,6 @@
-# Tutorial 1.0: How to use the indiGO R Package
+# Tutorials for the indiGO R Package
 
-This repository contains a Quarto project that demonstrates the usage of the he **indiGO (Indicators in Generalized Outputs)** R-package which is designed to analyze and display global indicators of the status and trends in nature in a generalized and systematic way. The indiGO package can be found in the [indiGO R package repository](https://github.com/hetzerj/indiGO).
+This repository contains tutorials that demonstrate the usage of the he **indiGO (Indicators in Generalized Outputs)** R-package which is designed to analyze and display global indicators of the status and trends in nature in a generalized and systematic way. The indiGO package can be found in the [indiGO R package repository](https://github.com/hetzerj/indiGO).
 
 ## Overview
 
@@ -11,17 +11,6 @@ The package provides a flexible framework for handling a wide variety of indicat
 -   **Available Indicators**: Lists all the indicators provided by the indiGO R package.
 -   **Function Demonstrations**: Shows how the core functions of the package work, using practical examples.
 -   **Plotting Figures**: Provides instructions and examples for visualizing the indicators using the package's functions.
-
-## How to Access the Tutorial
-
--   Displays all available indicators in the package.
--   Demonstrates how to apply various functions within the package to analyze indicators.
--   Shows how to generate and customize plots for visualizing indicator data.
--   Includes rendered output via GitHub Pages to allow users to view the documentation and examples directly online.
-
-## How to Access the Quarto Project
-
-The Tutorial is rendered as a website using GitHub Pages. You can access the live version of the documentation [here](https://hetzerj.github.io/indiGO_Tutorial1.0/).
 
 ## Download and Install the indiGO R Package
 
@@ -34,3 +23,7 @@ install.packages("devtools")
 # Install IA package from GitHub
 devtools::install_github("hetzerj/indiGO")
 ```
+
+## Tutorial 1.0: How to use the indiGO R Package
+
+The Tutorial is rendered as a website using GitHub Pages. You can access the live version of the documentation here: [Tutorial 1.0: How to Use the indiGO R Package](https://hetzerj.github.io/indiGO_Tutorial1.0/).
