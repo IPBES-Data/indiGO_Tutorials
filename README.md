@@ -8,16 +8,16 @@ The indiGO R-package provides an open-access framework that enables users to acc
 
 The package provides a flexible framework for handling a wide variety of indicators, not limited to a specific region, ecosystem, or time period. The generalized outputs are broad and adaptable, allowing users to apply them to various generalized data sets or indicator types across global or regional scales. Additionally, indiGO allows users to include their own data, enabling local data integration for customized indicator analysis.
 
-- **Available Indicators**: Lists all the indicators provided by the **IA** package.
-- **Function Demonstrations**: Shows how the core functions of the package work, using practical examples.
-- **Plotting Figures**: Provides instructions and examples for visualizing the indicators using the package's functions.
+-   **Available Indicators**: Lists all the indicators provided by the **IA** package.
+-   **Function Demonstrations**: Shows how the core functions of the package work, using practical examples.
+-   **Plotting Figures**: Provides instructions and examples for visualizing the indicators using the package's functions.
 
 ## Key Features
 
-- Displays all available indicators in the package.
-- Demonstrates how to apply various functions within the package to analyze indicators.
-- Shows how to generate and customize plots for visualizing indicator data.
-- Includes rendered output via GitHub Pages to allow users to view the documentation and examples directly online.
+-   Displays all available indicators in the package.
+-   Demonstrates how to apply various functions within the package to analyze indicators.
+-   Shows how to generate and customize plots for visualizing indicator data.
+-   Includes rendered output via GitHub Pages to allow users to view the documentation and examples directly online.
 
 ## How to Access the Quarto Project
 
@@ -27,7 +27,7 @@ The Quarto project is rendered as a website using GitHub Pages. You can access t
 
 You can download and install the **indiGO** R package directly from the [hetzerj/IA](https://github.com/hetzerj/indiGO) GitHub repository using the following commands in R:
 
-```r
+``` r
 # Install devtools if not already installed
 install.packages("devtools")
 
