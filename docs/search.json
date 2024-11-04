@@ -61,12 +61,5 @@
     "title": "How to use the indiGO R Package",
     "section": "5.8 Indicators of species traits",
     "text": "5.8 Indicators of species traits\n\n5.8.1 Functional richness (Madingley)\n\nindiGO::plot_indiGO(\"functional_richness_madingley\")\n\n\n\n\n\n\n\n\n\n\n5.8.2 Mammalian body mass\n\nindiGO::plot_indiGO(\"mammalian_body_mass\")\n\n\n\n\n\n\n\n\n\n\n5.8.3 Region-based Marine Trophic Index\n\nindiGO::plot_indiGO(\"region_based_marine_trophic_index\")"
-  },
-  {
-    "objectID": "indiGO_Tutorial1.0.html#extent-of-forests-1",
-    "href": "indiGO_Tutorial1.0.html#extent-of-forests-1",
-    "title": "How to use the indiGO R Package",
-    "section": "6.1 Extent of forests",
-    "text": "6.1 Extent of forests\n\n# use the IA.ExtentOfForests subpackage \n# no need for loading as it is already loaded in the package\n#in case you want to download the source data to a specific repository, please enter local Path \n# localPath=NULL \n# \n# is.upToDate &lt;-IA.ExtentOfForests::download_from_origin(localPath)"
   }
 ]

@@ -567,18 +567,3 @@ indiGO::plot_indiGO("mammalian_body_mass")
 indiGO::plot_indiGO("region_based_marine_trophic_index")
 
 ```
-
-# Update indicators
-
-## Extent of forests
-
-```{r,warnings=FALSE}
-# use the IA.ExtentOfForests subpackage 
-# no need for loading as it is already loaded in the package
-#in case you want to download the source data to a specific repository, please enter local Path 
-# localPath=NULL 
-# 
-# is.upToDate <-IA.ExtentOfForests::download_from_origin(localPath)
-
-
-```
