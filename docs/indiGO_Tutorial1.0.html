@@ -118,8 +118,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#overview" id="toc-overview" class="nav-link active" data-scroll-target="#overview"><span class="header-section-number">1</span> Overview</a></li>
-  <li><a href="#installation" id="toc-installation" class="nav-link" data-scroll-target="#installation"><span class="header-section-number">2</span> Installation</a></li>
+  <li><a href="#package-description" id="toc-package-description" class="nav-link active" data-scroll-target="#package-description"><span class="header-section-number">1</span> <strong>Package</strong> description</a></li>
+  <li><a href="#download-and-install" id="toc-download-and-install" class="nav-link" data-scroll-target="#download-and-install"><span class="header-section-number">2</span> Download and install</a></li>
   <li><a href="#indicator-data-included" id="toc-indicator-data-included" class="nav-link" data-scroll-target="#indicator-data-included"><span class="header-section-number">3</span> Indicator data included</a></li>
   <li><a href="#exploring-indigo-package-functionalities" id="toc-exploring-indigo-package-functionalities" class="nav-link" data-scroll-target="#exploring-indigo-package-functionalities"><span class="header-section-number">4</span> Exploring indiGO Package Functionalities</a></li>
   <li><a href="#display-all-indicators-available" id="toc-display-all-indicators-available" class="nav-link" data-scroll-target="#display-all-indicators-available"><span class="header-section-number">5</span> Display all indicators available</a>
@@ -236,1423 +236,215 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="overview" class="level1" data-number="1">
-<h1 data-number="1"><span class="header-section-number">1</span> Overview</h1>
-<p>The <strong>indiGO R-package</strong> provides an open-access framework that enables users to access annually and globally aggregated indicators as described in the <a href="https://doi.org/10.5281/zenodo.3831673">first Global Assessment Report on Biodiversity and Ecosystem Services</a> of the Intergovernmental Science-Policy Platform on Biodiversity and Ecosystem Services (IPBES, 2019). It follows the standardization of indicators outlined in the supplemental material of the Global Assessment Report, <a href="https://doi.org/10.5281/zenodo.3832005">Chapter 2.2: Status and Trends – Nature</a>.</p>
-<p>The package provides a flexible framework for handling a wide variety of indicators, not limited to a specific region, ecosystem, or time period. The generalized outputs are broad and adaptable, allowing users to apply them to various generalized data sets or indicator types across global or regional scales. Additionally, indiGO allows users to include their own data, enabling local data integration for customized indicator analysis.</p>
-<p>Here we show how to access the data and use the functions provided by the indiGO package. As a first step, the package should be installed from github and loaded.</p>
+<section id="package-description" class="level1" data-number="1">
+<h1 data-number="1"><span class="header-section-number">1</span> <strong>Package</strong> description</h1>
+<p>The indiGO R package provides an open-access framework that enables users to access annually aggregated indicators as described in the <a href="https://doi.org/10.5281/zenodo.3831673">first Global Assessment Report on Biodiversity and Ecosystem Services</a> by the Intergovernmental Science-Policy Platform on Biodiversity and Ecosystem Services (IPBES, 2019). It follows the standardization of indicators outlined in the supplementary material of the Global Assessment Report, <a href="https://doi.org/10.5281/zenodo.3832005">Chapter 2.2: Status and Trends – Nature</a>.</p>
+<p>The package offers a flexible framework for handling a wide variety of indicators, not limited to a specific region, ecosystem, or time period. Its generalized outputs are broad and adaptable, allowing users to apply them to various data sets or indicator types across global or regional scales. Additionally, indiGO allows users to include their own data, enabling local data integration for customized indicator analysis.</p>
 </section>
-<section id="installation" class="level1" data-number="2">
-<h1 data-number="2"><span class="header-section-number">2</span> Installation</h1>
-<p>To install the package, run the following command in R:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Installation from GitHub</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>devtools<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">"hetzerj/indiGO"</span>)</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(indiGO)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
+<section id="download-and-install" class="level1" data-number="2">
+<h1 data-number="2"><span class="header-section-number">2</span> Download and install</h1>
+<p>You can download and install the indiGO R package directly from the <a href="https://github.com/IPBES-Data/indiGO">indiGO R package GitHub repository</a> using the following commands in R:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Install devtools if not already installed</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"devtools"</span>)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Install indiGO package from GitHub</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>devtools<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">"IPBES-Data/indiGO"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="indicator-data-included" class="level1" data-number="3">
 <h1 data-number="3"><span class="header-section-number">3</span> Indicator data included</h1>
-<p>The package includes a variety of indicator data, in specific data sets that represent the state of nature globally or across multiple regions. The package focuses on the indicators defined and classified by IPBES (2019). Indicators are assigned to Essential Biodiversity Variable (EBV) classes and categorized based on their relevance to ecosystems and their sensitivity to human impacts. For an overview of the indicator meta data see Table 1, which can be displayed using the indiGO function <code>indi_summary()</code>.</p>
+<p>The package includes a variety of indicator data, in specific data sets that represent the state of nature globally or across multiple regions. The package focuses on the indicators defined and classified by IPBES (2019). Indicators are assigned to Essential Biodiversity Variable (EBV) classes and categorized based on their relevance to ecosystems and their sensitivity to human impacts. For an overview of the indicator meta data see Table 1, which can be loaded using the indiGO function <code>indi_summary()</code>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>Tab1<span class="ot">&lt;-</span>indiGO<span class="sc">::</span><span class="fu">indi_summary</span>()</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>Tab1<span class="sc">%&gt;%</span></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kbl</span>(<span class="at">escape =</span> <span class="cn">FALSE</span>, <span class="at">caption=</span><span class="st">"Table 1: Summary of indicators used in this synthesis organised alphabetically within EBV class (and, where relevant, EBV scale). Core/Highlight/Other denotes the Knowledge &amp; Data TSU’s evaluation of each indicator. Whole or Part of indicator denotes whether the row of the table refers to an overall indicator (e.g., Red List Index) or a subset (e.g., Red List Index of pollinators)."</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable_styling</span>(<span class="at">bootstrap_options =</span> <span class="fu">c</span>(<span class="st">"striped"</span>, <span class="st">"hover"</span>, <span class="st">"condensed"</span>, <span class="st">"responsive"</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">row_spec</span>(<span class="dv">0</span>, <span class="at">extra_css =</span> <span class="st">"height: 180px; transform-origin: left"</span>, <span class="at">angle=</span><span class="sc">-</span><span class="dv">45</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>Table1<span class="ot">&lt;-</span>indiGO<span class="sc">::</span><span class="fu">indi_summary</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><em><strong>Table 1: Example of Indicator Metadata</strong>. This internally loaded data table includes the indicator names “Indicator”, data sources “Reference”, and the Essential Biodiversity Variable “EBV.Class” as designated by IPBES (2019). The column “Core.Highlight.Other” represents the Knowledge &amp; Data TSU’s assessment of the importance of each indicator. While all indicators are available as globally aggregated values, some specify subsets of these metrics. For example, the global Red List Index indicator is further broken down into subsets, such as the Red List Index of pollinators. The column “Whole.or.Part.of.indicator” indicates whether the entry represents the overall indicator or a subset.</em></p>
+<div class="cell">
 <div class="cell-output-display">
 <div class="table-responsive">
 <table class="table table-striped table-hover table-condensed caption-top table-sm small" data-quarto-postprocess="true">
-<caption>Table 1: Summary of indicators used in this synthesis organised alphabetically within EBV class (and, where relevant, EBV scale). Core/Highlight/Other denotes the Knowledge &amp; Data TSU’s evaluation of each indicator. Whole or Part of indicator denotes whether the row of the table refers to an overall indicator (e.g., Red List Index) or a subset (e.g., Red List Index of pollinators).</caption>
 <thead>
 <tr class="header">
-<th data-quarto-table-cell-role="th" style="text-align: left; -webkit-transform: rotate(-45deg); -moz-transform: rotate(-45deg); -ms-transform: rotate(-45deg); -o-transform: rotate(-45deg); transform: rotate(-45deg); height: 180px; transform-origin: left;">Indicator</th>
-<th data-quarto-table-cell-role="th" style="text-align: left; -webkit-transform: rotate(-45deg); -moz-transform: rotate(-45deg); -ms-transform: rotate(-45deg); -o-transform: rotate(-45deg); transform: rotate(-45deg); height: 180px; transform-origin: left;">Reference</th>
-<th data-quarto-table-cell-role="th" style="text-align: left; -webkit-transform: rotate(-45deg); -moz-transform: rotate(-45deg); -ms-transform: rotate(-45deg); -o-transform: rotate(-45deg); transform: rotate(-45deg); height: 180px; transform-origin: left;">Core.Highlight.Other</th>
-<th data-quarto-table-cell-role="th" style="text-align: left; -webkit-transform: rotate(-45deg); -moz-transform: rotate(-45deg); -ms-transform: rotate(-45deg); -o-transform: rotate(-45deg); transform: rotate(-45deg); height: 180px; transform-origin: left;">Whole.or.Part.of.indicator</th>
-<th data-quarto-table-cell-role="th" style="text-align: left; -webkit-transform: rotate(-45deg); -moz-transform: rotate(-45deg); -ms-transform: rotate(-45deg); -o-transform: rotate(-45deg); transform: rotate(-45deg); height: 180px; transform-origin: left;">EBV.class</th>
-<th data-quarto-table-cell-role="th" style="text-align: left; -webkit-transform: rotate(-45deg); -moz-transform: rotate(-45deg); -ms-transform: rotate(-45deg); -o-transform: rotate(-45deg); transform: rotate(-45deg); height: 180px; transform-origin: left;">EBV.scale</th>
-<th data-quarto-table-cell-role="th" style="text-align: left; -webkit-transform: rotate(-45deg); -moz-transform: rotate(-45deg); -ms-transform: rotate(-45deg); -o-transform: rotate(-45deg); transform: rotate(-45deg); height: 180px; transform-origin: left;">Representative.fundamental</th>
-<th data-quarto-table-cell-role="th" style="text-align: left; -webkit-transform: rotate(-45deg); -moz-transform: rotate(-45deg); -ms-transform: rotate(-45deg); -o-transform: rotate(-45deg); transform: rotate(-45deg); height: 180px; transform-origin: left;">Sensitive</th>
-<th data-quarto-table-cell-role="th" style="text-align: left; -webkit-transform: rotate(-45deg); -moz-transform: rotate(-45deg); -ms-transform: rotate(-45deg); -o-transform: rotate(-45deg); transform: rotate(-45deg); height: 180px; transform-origin: left;">Underpins.NCP</th>
-<th data-quarto-table-cell-role="th" style="text-align: right; -webkit-transform: rotate(-45deg); -moz-transform: rotate(-45deg); -ms-transform: rotate(-45deg); -o-transform: rotate(-45deg); transform: rotate(-45deg); height: 180px; transform-origin: left;">Pristine.value</th>
-<th data-quarto-table-cell-role="th" style="text-align: right; -webkit-transform: rotate(-45deg); -moz-transform: rotate(-45deg); -ms-transform: rotate(-45deg); -o-transform: rotate(-45deg); transform: rotate(-45deg); height: 180px; transform-origin: left;">Degraded.value</th>
-<th data-quarto-table-cell-role="th" style="text-align: right; -webkit-transform: rotate(-45deg); -moz-transform: rotate(-45deg); -ms-transform: rotate(-45deg); -o-transform: rotate(-45deg); transform: rotate(-45deg); height: 180px; transform-origin: left;">Percentage.now</th>
-<th data-quarto-table-cell-role="th" style="text-align: right; -webkit-transform: rotate(-45deg); -moz-transform: rotate(-45deg); -ms-transform: rotate(-45deg); -o-transform: rotate(-45deg); transform: rotate(-45deg); height: 180px; transform-origin: left;">Decadal.rate</th>
-<th data-quarto-table-cell-role="th" style="text-align: left; -webkit-transform: rotate(-45deg); -moz-transform: rotate(-45deg); -ms-transform: rotate(-45deg); -o-transform: rotate(-45deg); transform: rotate(-45deg); height: 180px; transform-origin: left;">Years</th>
-<th data-quarto-table-cell-role="th" style="text-align: right; -webkit-transform: rotate(-45deg); -moz-transform: rotate(-45deg); -ms-transform: rotate(-45deg); -o-transform: rotate(-45deg); transform: rotate(-45deg); height: 180px; transform-origin: left;">N</th>
-<th data-quarto-table-cell-role="th" style="text-align: right; -webkit-transform: rotate(-45deg); -moz-transform: rotate(-45deg); -ms-transform: rotate(-45deg); -o-transform: rotate(-45deg); transform: rotate(-45deg); height: 180px; transform-origin: left;">N.since.1970</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Indicator</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Reference</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">EBV.class</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Core.Highlight.Other</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Whole.or.Part.of.indicator</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
 <td style="text-align: left;">Aboveground biomass</td>
 <td style="text-align: left;">Liu et al. (2015)</td>
+<td style="text-align: left;">Ecosystem structure</td>
 <td style="text-align: left;">O</td>
 <td style="text-align: left;">W</td>
-<td style="text-align: left;">Ecosystem structure</td>
-<td style="text-align: left;"></td>
-<td style="text-align: left;">Y</td>
-<td style="text-align: left;">N</td>
-<td style="text-align: left;">Y</td>
-<td style="text-align: right;">770.90</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">49.18</td>
-<td style="text-align: right;">-0.09</td>
-<td style="text-align: left;">1993-2012</td>
-<td style="text-align: right;">20</td>
-<td style="text-align: right;">20</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Biodiversity Habitat Index (forest biomes)</td>
 <td style="text-align: left;">Hoskins et al. (2018)</td>
+<td style="text-align: left;">Ecosystem structure</td>
 <td style="text-align: left;">C</td>
 <td style="text-align: left;">W</td>
-<td style="text-align: left;">Ecosystem structure</td>
-<td style="text-align: left;"></td>
-<td style="text-align: left;">Y</td>
-<td style="text-align: left;">N</td>
-<td style="text-align: left;">N</td>
-<td style="text-align: right;">1.00</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">25.89</td>
-<td style="text-align: right;">-6.10</td>
-<td style="text-align: left;">2000-2014</td>
-<td style="text-align: right;">7</td>
-<td style="text-align: right;">7</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Coastal carbon-rich habitat</td>
 <td style="text-align: left;">Ocean Health Index</td>
+<td style="text-align: left;">Ecosystem structure</td>
 <td style="text-align: left;">O</td>
 <td style="text-align: left;">W</td>
-<td style="text-align: left;">Ecosystem structure</td>
-<td style="text-align: left;"></td>
-<td style="text-align: left;">Y</td>
-<td style="text-align: left;">Y</td>
-<td style="text-align: left;">Y</td>
-<td style="text-align: right;">NA</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">NA</td>
-<td style="text-align: right;">-5.83</td>
-<td style="text-align: left;">1980-2016</td>
-<td style="text-align: right;">2</td>
-<td style="text-align: right;">2</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Coastal protection habitats</td>
 <td style="text-align: left;">Ocean Health Index</td>
+<td style="text-align: left;">Ecosystem structure</td>
 <td style="text-align: left;">O</td>
 <td style="text-align: left;">W</td>
-<td style="text-align: left;">Ecosystem structure</td>
-<td style="text-align: left;"></td>
-<td style="text-align: left;">Y</td>
-<td style="text-align: left;">Y</td>
-<td style="text-align: left;">Y</td>
-<td style="text-align: right;">NA</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">NA</td>
-<td style="text-align: right;">-3.51</td>
-<td style="text-align: left;">1980-2017</td>
-<td style="text-align: right;">2</td>
-<td style="text-align: right;">2</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Extent of forests (FAO)</td>
 <td style="text-align: left;">FAO (2015)</td>
+<td style="text-align: left;">Ecosystem structure</td>
 <td style="text-align: left;">C</td>
 <td style="text-align: left;">W</td>
-<td style="text-align: left;">Ecosystem structure</td>
-<td style="text-align: left;"></td>
-<td style="text-align: left;">N</td>
-<td style="text-align: left;">N</td>
-<td style="text-align: left;">Y</td>
-<td style="text-align: right;">0.44</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">70.12</td>
-<td style="text-align: right;">-1.24</td>
-<td style="text-align: left;">1990-2015</td>
-<td style="text-align: right;">5</td>
-<td style="text-align: right;">5</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Extent of forests (remote-sensing)</td>
 <td style="text-align: left;">Hansen et al. (2013)</td>
+<td style="text-align: left;">Ecosystem structure</td>
 <td style="text-align: left;">C</td>
 <td style="text-align: left;">W</td>
-<td style="text-align: left;">Ecosystem structure</td>
-<td style="text-align: left;"></td>
-<td style="text-align: left;">N</td>
-<td style="text-align: left;">N</td>
-<td style="text-align: left;">Y</td>
-<td style="text-align: right;">59105082.23</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">30.22</td>
-<td style="text-align: right;">-6.41</td>
-<td style="text-align: left;">2000-2012</td>
-<td style="text-align: right;">2</td>
-<td style="text-align: right;">2</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Extent of intact forest landscapes</td>
 <td style="text-align: left;">Potapov et al. (2017)</td>
+<td style="text-align: left;">Ecosystem structure</td>
 <td style="text-align: left;">O</td>
 <td style="text-align: left;">W</td>
-<td style="text-align: left;">Ecosystem structure</td>
-<td style="text-align: left;"></td>
-<td style="text-align: left;">N</td>
-<td style="text-align: left;">Y</td>
-<td style="text-align: left;">N</td>
-<td style="text-align: right;">59105082.00</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">20.10</td>
-<td style="text-align: right;">-5.52</td>
-<td style="text-align: left;">2000-2013</td>
-<td style="text-align: right;">2</td>
-<td style="text-align: right;">2</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Extent of remaining wilderness</td>
 <td style="text-align: left;">Watson et al. (2016)</td>
+<td style="text-align: left;">Ecosystem structure</td>
 <td style="text-align: left;">O</td>
 <td style="text-align: left;">W</td>
-<td style="text-align: left;">Ecosystem structure</td>
-<td style="text-align: left;"></td>
-<td style="text-align: left;">N</td>
-<td style="text-align: left;">Y</td>
-<td style="text-align: left;">N</td>
-<td style="text-align: right;">129741000.00</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">23.20</td>
-<td style="text-align: right;">-4.49</td>
-<td style="text-align: left;">1993-2015</td>
-<td style="text-align: right;">2</td>
-<td style="text-align: right;">2</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Fraction of ocean not fished</td>
 <td style="text-align: left;">Kroodsma et al. (2018)</td>
+<td style="text-align: left;">Ecosystem structure</td>
 <td style="text-align: left;">O</td>
 <td style="text-align: left;">W</td>
-<td style="text-align: left;">Ecosystem structure</td>
-<td style="text-align: left;"></td>
-<td style="text-align: left;">Y</td>
-<td style="text-align: left;">Y</td>
-<td style="text-align: left;">N</td>
-<td style="text-align: right;">100.00</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">45.00</td>
-<td style="text-align: right;">NA</td>
-<td style="text-align: left;">2016-2016</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">1</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Land not cultivated or urban (global)</td>
 <td style="text-align: left;">ESA (2017)</td>
+<td style="text-align: left;">Ecosystem structure</td>
 <td style="text-align: left;">O</td>
 <td style="text-align: left;">W</td>
-<td style="text-align: left;">Ecosystem structure</td>
-<td style="text-align: left;"></td>
-<td style="text-align: left;">Y</td>
-<td style="text-align: left;">N</td>
-<td style="text-align: left;">N</td>
-<td style="text-align: right;">131.57</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">76.74</td>
-<td style="text-align: right;">-0.57</td>
-<td style="text-align: left;">1992-2015</td>
-<td style="text-align: right;">24</td>
-<td style="text-align: right;">24</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Land not cultivated or urban (UoA: desert &amp; dryland)</td>
 <td style="text-align: left;">ESA (2017)</td>
+<td style="text-align: left;">Ecosystem structure</td>
 <td style="text-align: left;">O</td>
 <td style="text-align: left;">P</td>
-<td style="text-align: left;">Ecosystem structure</td>
-<td style="text-align: left;"></td>
-<td style="text-align: left;">Y</td>
-<td style="text-align: left;">N</td>
-<td style="text-align: left;">N</td>
-<td style="text-align: right;">27.89</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">91.98</td>
-<td style="text-align: right;">-0.19</td>
-<td style="text-align: left;">1992-2015</td>
-<td style="text-align: right;">24</td>
-<td style="text-align: right;">24</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Land not cultivated or urban (UoA: Mediterranean forest)</td>
 <td style="text-align: left;">ESA (2017)</td>
+<td style="text-align: left;">Ecosystem structure</td>
 <td style="text-align: left;">O</td>
 <td style="text-align: left;">P</td>
-<td style="text-align: left;">Ecosystem structure</td>
-<td style="text-align: left;"></td>
-<td style="text-align: left;">Y</td>
-<td style="text-align: left;">N</td>
-<td style="text-align: left;">N</td>
-<td style="text-align: right;">3.22</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">49.29</td>
-<td style="text-align: right;">-0.53</td>
-<td style="text-align: left;">1992-2015</td>
-<td style="text-align: right;">24</td>
-<td style="text-align: right;">24</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Land not cultivated or urban (UoA: temperate forest)</td>
 <td style="text-align: left;">ESA (2017)</td>
+<td style="text-align: left;">Ecosystem structure</td>
 <td style="text-align: left;">O</td>
 <td style="text-align: left;">P</td>
-<td style="text-align: left;">Ecosystem structure</td>
-<td style="text-align: left;"></td>
-<td style="text-align: left;">Y</td>
-<td style="text-align: left;">N</td>
-<td style="text-align: left;">N</td>
-<td style="text-align: right;">32.04</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">74.26</td>
-<td style="text-align: right;">-0.23</td>
-<td style="text-align: left;">1992-2015</td>
-<td style="text-align: right;">24</td>
-<td style="text-align: right;">24</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Land not cultivated or urban (UoA: temperate grassland)</td>
 <td style="text-align: left;">ESA (2017)</td>
+<td style="text-align: left;">Ecosystem structure</td>
 <td style="text-align: left;">O</td>
 <td style="text-align: left;">P</td>
-<td style="text-align: left;">Ecosystem structure</td>
-<td style="text-align: left;"></td>
-<td style="text-align: left;">Y</td>
-<td style="text-align: left;">N</td>
-<td style="text-align: left;">N</td>
-<td style="text-align: right;">11.19</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">43.10</td>
-<td style="text-align: right;">-2.55</td>
-<td style="text-align: left;">1992-2015</td>
-<td style="text-align: right;">24</td>
-<td style="text-align: right;">24</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Land not cultivated or urban (UoA: tropical forest)</td>
 <td style="text-align: left;">ESA (2017)</td>
+<td style="text-align: left;">Ecosystem structure</td>
 <td style="text-align: left;">O</td>
 <td style="text-align: left;">P</td>
-<td style="text-align: left;">Ecosystem structure</td>
-<td style="text-align: left;"></td>
-<td style="text-align: left;">Y</td>
-<td style="text-align: left;">N</td>
-<td style="text-align: left;">N</td>
-<td style="text-align: right;">23.49</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">70.35</td>
-<td style="text-align: right;">-1.34</td>
-<td style="text-align: left;">1992-2015</td>
-<td style="text-align: right;">24</td>
-<td style="text-align: right;">24</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Land not cultivated or urban (UoA: tropical grassland)</td>
 <td style="text-align: left;">ESA (2017)</td>
+<td style="text-align: left;">Ecosystem structure</td>
 <td style="text-align: left;">O</td>
 <td style="text-align: left;">P</td>
-<td style="text-align: left;">Ecosystem structure</td>
-<td style="text-align: left;"></td>
-<td style="text-align: left;">Y</td>
-<td style="text-align: left;">N</td>
-<td style="text-align: left;">N</td>
-<td style="text-align: right;">20.18</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">77.95</td>
-<td style="text-align: right;">-0.70</td>
-<td style="text-align: left;">1992-2015</td>
-<td style="text-align: right;">24</td>
-<td style="text-align: right;">24</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Land not cultivated or urban (UoA: tundra &amp; mountains)</td>
 <td style="text-align: left;">ESA (2017)</td>
+<td style="text-align: left;">Ecosystem structure</td>
 <td style="text-align: left;">O</td>
 <td style="text-align: left;">P</td>
-<td style="text-align: left;">Ecosystem structure</td>
-<td style="text-align: left;"></td>
-<td style="text-align: left;">Y</td>
-<td style="text-align: left;">N</td>
-<td style="text-align: left;">N</td>
-<td style="text-align: right;">13.55</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">94.78</td>
-<td style="text-align: right;">-0.03</td>
-<td style="text-align: left;">1992-2015</td>
-<td style="text-align: right;">24</td>
-<td style="text-align: right;">24</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Mangrove forest cover (km2)</td>
 <td style="text-align: left;">Hamilton &amp; Casey (2016)</td>
+<td style="text-align: left;">Ecosystem structure</td>
 <td style="text-align: left;">O</td>
 <td style="text-align: left;">W</td>
-<td style="text-align: left;">Ecosystem structure</td>
-<td style="text-align: left;"></td>
-<td style="text-align: left;">Y</td>
-<td style="text-align: left;">Y</td>
-<td style="text-align: left;">N</td>
-<td style="text-align: right;">346432.04</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">23.53</td>
-<td style="text-align: right;">-1.73</td>
-<td style="text-align: left;">2000-2014</td>
-<td style="text-align: right;">15</td>
-<td style="text-align: right;">15</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Natural habitat extent</td>
 <td style="text-align: left;">FAO</td>
+<td style="text-align: left;">Ecosystem structure</td>
 <td style="text-align: left;">O</td>
 <td style="text-align: left;">W</td>
-<td style="text-align: left;">Ecosystem structure</td>
-<td style="text-align: left;"></td>
-<td style="text-align: left;">Y</td>
-<td style="text-align: left;">N</td>
-<td style="text-align: left;">N</td>
-<td style="text-align: right;">100.00</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">62.32</td>
-<td style="text-align: right;">-1.00</td>
-<td style="text-align: left;">1961-2011</td>
-<td style="text-align: right;">51</td>
-<td style="text-align: right;">42</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Percentage live coral cover</td>
 <td style="text-align: left;">Tittensor et al. (2014)</td>
+<td style="text-align: left;">Ecosystem structure</td>
 <td style="text-align: left;">O</td>
 <td style="text-align: left;">W</td>
-<td style="text-align: left;">Ecosystem structure</td>
-<td style="text-align: left;"></td>
-<td style="text-align: left;">Y</td>
-<td style="text-align: left;">Y</td>
-<td style="text-align: left;">N</td>
-<td style="text-align: right;">100.00</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">31.42</td>
-<td style="text-align: right;">-4.01</td>
-<td style="text-align: left;">1972-2016</td>
-<td style="text-align: right;">41</td>
-<td style="text-align: right;">41</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Remaining primary vegetation</td>
 <td style="text-align: left;">Hurtt et al. (in press)</td>
+<td style="text-align: left;">Ecosystem structure</td>
 <td style="text-align: left;">O</td>
 <td style="text-align: left;">W</td>
-<td style="text-align: left;">Ecosystem structure</td>
-<td style="text-align: left;"></td>
-<td style="text-align: left;">Y</td>
-<td style="text-align: left;">N</td>
-<td style="text-align: left;">N</td>
-<td style="text-align: right;">100.00</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">38.57</td>
-<td style="text-align: right;">-4.12</td>
-<td style="text-align: left;">850-2015</td>
-<td style="text-align: right;">1166</td>
-<td style="text-align: right;">46</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Soil organic carbon</td>
 <td style="text-align: left;">Stoorvogel et al. (2017)</td>
+<td style="text-align: left;">Ecosystem structure</td>
 <td style="text-align: left;">O</td>
 <td style="text-align: left;">W</td>
-<td style="text-align: left;">Ecosystem structure</td>
-<td style="text-align: left;"></td>
-<td style="text-align: left;">Y</td>
-<td style="text-align: left;">N</td>
-<td style="text-align: left;">N</td>
-<td style="text-align: right;">2200.00</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">92.00</td>
-<td style="text-align: right;">NA</td>
-<td style="text-align: left;">2010-2010</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">1</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Wetland Extent Trends Index</td>
 <td style="text-align: left;">Dixon et al. (2016)</td>
+<td style="text-align: left;">Ecosystem structure</td>
 <td style="text-align: left;">H</td>
 <td style="text-align: left;">W</td>
-<td style="text-align: left;">Ecosystem structure</td>
-<td style="text-align: left;"></td>
-<td style="text-align: left;">Y</td>
-<td style="text-align: left;">Y</td>
-<td style="text-align: left;">N</td>
-<td style="text-align: right;">NA</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">NA</td>
-<td style="text-align: right;">-7.74</td>
-<td style="text-align: left;">1970-2015</td>
-<td style="text-align: right;">46</td>
-<td style="text-align: right;">46</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Biological pump efficiency</td>
 <td style="text-align: left;">Cael et al. (2017)</td>
+<td style="text-align: left;">Ecosystem function</td>
 <td style="text-align: left;">O</td>
 <td style="text-align: left;">W</td>
-<td style="text-align: left;">Ecosystem function</td>
-<td style="text-align: left;"></td>
-<td style="text-align: left;">Y</td>
-<td style="text-align: left;">N</td>
-<td style="text-align: left;">N</td>
-<td style="text-align: right;">NA</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">NA</td>
-<td style="text-align: right;">-0.47</td>
-<td style="text-align: left;">1982-2014</td>
-<td style="text-align: right;">2</td>
-<td style="text-align: right;">2</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Biomass turnover rate</td>
 <td style="text-align: left;">Erb et al. (2016)</td>
-<td style="text-align: left;">O</td>
-<td style="text-align: left;">W</td>
 <td style="text-align: left;">Ecosystem function</td>
-<td style="text-align: left;"></td>
-<td style="text-align: left;">Y</td>
-<td style="text-align: left;">N</td>
-<td style="text-align: left;">N</td>
-<td style="text-align: right;">0.07</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">194.37</td>
-<td style="text-align: right;">NA</td>
-<td style="text-align: left;">2000-2000</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">1</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">NPP remaining in ecosystems</td>
-<td style="text-align: left;">Krausmann et al. (2013)</td>
 <td style="text-align: left;">O</td>
 <td style="text-align: left;">W</td>
-<td style="text-align: left;">Ecosystem function</td>
-<td style="text-align: left;"></td>
-<td style="text-align: left;">Y</td>
-<td style="text-align: left;">N</td>
-<td style="text-align: left;">N</td>
-<td style="text-align: right;">52221669.00</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">86.22</td>
-<td style="text-align: right;">1.26</td>
-<td style="text-align: left;">1910-2005</td>
-<td style="text-align: right;">9</td>
-<td style="text-align: right;">5</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Ocean Net Primary Productivity</td>
-<td style="text-align: left;">Behrenfeld et al. (2006)</td>
-<td style="text-align: left;">O</td>
-<td style="text-align: left;">W</td>
-<td style="text-align: left;">Ecosystem function</td>
-<td style="text-align: left;"></td>
-<td style="text-align: left;">Y</td>
-<td style="text-align: left;">N</td>
-<td style="text-align: left;">Y</td>
-<td style="text-align: right;">NA</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">NA</td>
-<td style="text-align: right;">4.71</td>
-<td style="text-align: left;">1998-2007</td>
-<td style="text-align: right;">10</td>
-<td style="text-align: right;">10</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Oceanic carbon sequestration</td>
-<td style="text-align: left;">Le Quere et al. (2018)</td>
-<td style="text-align: left;">O</td>
-<td style="text-align: left;">W</td>
-<td style="text-align: left;">Ecosystem function</td>
-<td style="text-align: left;"></td>
-<td style="text-align: left;">Y</td>
-<td style="text-align: left;">N</td>
-<td style="text-align: left;">Y</td>
-<td style="text-align: right;">NA</td>
-<td style="text-align: right;">NA</td>
-<td style="text-align: right;">NA</td>
-<td style="text-align: right;">28.78</td>
-<td style="text-align: left;">1970-2010</td>
-<td style="text-align: right;">41</td>
-<td style="text-align: right;">41</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Terrestrial carbon sequestration</td>
-<td style="text-align: left;">Le Quere et al. (2018)</td>
-<td style="text-align: left;">O</td>
-<td style="text-align: left;">W</td>
-<td style="text-align: left;">Ecosystem function</td>
-<td style="text-align: left;"></td>
-<td style="text-align: left;">Y</td>
-<td style="text-align: left;">N</td>
-<td style="text-align: left;">Y</td>
-<td style="text-align: right;">NA</td>
-<td style="text-align: right;">NA</td>
-<td style="text-align: right;">NA</td>
-<td style="text-align: right;">22.04</td>
-<td style="text-align: left;">1951-2015</td>
-<td style="text-align: right;">65</td>
-<td style="text-align: right;">46</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Terrestrial NPP (TRENDY)</td>
-<td style="text-align: left;">Ichii et al. ?</td>
-<td style="text-align: left;">O</td>
-<td style="text-align: left;">W</td>
-<td style="text-align: left;">Ecosystem function</td>
-<td style="text-align: left;"></td>
-<td style="text-align: left;">Y</td>
-<td style="text-align: left;">N</td>
-<td style="text-align: left;">N</td>
-<td style="text-align: right;">52.22</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">135.23</td>
-<td style="text-align: right;">2.58</td>
-<td style="text-align: left;">1951-2015</td>
-<td style="text-align: right;">65</td>
-<td style="text-align: right;">46</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Terrestrial NPP (Zhao &amp; Running 2010)</td>
-<td style="text-align: left;">Zhao &amp; Running (2010)</td>
-<td style="text-align: left;">O</td>
-<td style="text-align: left;">W</td>
-<td style="text-align: left;">Ecosystem function</td>
-<td style="text-align: left;"></td>
-<td style="text-align: left;">Y</td>
-<td style="text-align: left;">N</td>
-<td style="text-align: left;">Y</td>
-<td style="text-align: right;">NA</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">NA</td>
-<td style="text-align: right;">0.59</td>
-<td style="text-align: left;">2000-2015</td>
-<td style="text-align: right;">16</td>
-<td style="text-align: right;">16</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Biodiversity Intactness Index (overall)</td>
-<td style="text-align: left;">Hill et al. (2018)</td>
-<td style="text-align: left;">C</td>
-<td style="text-align: left;">W</td>
-<td style="text-align: left;">Community composition</td>
-<td style="text-align: left;">1. Local</td>
-<td style="text-align: left;">Y</td>
-<td style="text-align: left;">N</td>
-<td style="text-align: left;">N</td>
-<td style="text-align: right;">1.00</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">78.59</td>
-<td style="text-align: right;">-0.83</td>
-<td style="text-align: left;">900-2014</td>
-<td style="text-align: right;">53</td>
-<td style="text-align: right;">18</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Biodiversity Intactness Index (tropical forests)</td>
-<td style="text-align: left;">De Palma et al. (2018)</td>
-<td style="text-align: left;">C</td>
-<td style="text-align: left;">P</td>
-<td style="text-align: left;">Community composition</td>
-<td style="text-align: left;">1. Local</td>
-<td style="text-align: left;">Y</td>
-<td style="text-align: left;">N</td>
-<td style="text-align: left;">N</td>
-<td style="text-align: right;">1.00</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">58.46</td>
-<td style="text-align: right;">-3.04</td>
-<td style="text-align: left;">2001-2012</td>
-<td style="text-align: right;">12</td>
-<td style="text-align: right;">12</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Local species richness (BioTime)</td>
-<td style="text-align: left;">Dornelas et al. (2014)</td>
-<td style="text-align: left;">H</td>
-<td style="text-align: left;">W</td>
-<td style="text-align: left;">Community composition</td>
-<td style="text-align: left;">1. Local</td>
-<td style="text-align: left;">Y</td>
-<td style="text-align: left;">N</td>
-<td style="text-align: left;">N</td>
-<td style="text-align: right;">NA</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">NA</td>
-<td style="text-align: right;">1.22</td>
-<td style="text-align: left;">1960-2015</td>
-<td style="text-align: right;">12</td>
-<td style="text-align: right;">10</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Local species richness (PREDICTS)</td>
-<td style="text-align: left;">Hill et al. (2018)</td>
-<td style="text-align: left;">C</td>
-<td style="text-align: left;">W</td>
-<td style="text-align: left;">Community composition</td>
-<td style="text-align: left;">1. Local</td>
-<td style="text-align: left;">Y</td>
-<td style="text-align: left;">N</td>
-<td style="text-align: left;">N</td>
-<td style="text-align: right;">1.00</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">73.56</td>
-<td style="text-align: right;">-1.05</td>
-<td style="text-align: left;">900-2014</td>
-<td style="text-align: right;">53</td>
-<td style="text-align: right;">18</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Mean Species Abundance Index</td>
-<td style="text-align: left;">Alkemade et al. (2009) [method]</td>
-<td style="text-align: left;">H</td>
-<td style="text-align: left;">W</td>
-<td style="text-align: left;">Community composition</td>
-<td style="text-align: left;">1. Local</td>
-<td style="text-align: left;">Y</td>
-<td style="text-align: left;">N</td>
-<td style="text-align: left;">N</td>
-<td style="text-align: right;">100.00</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">66.43</td>
-<td style="text-align: right;">-2.82</td>
-<td style="text-align: left;">0-2010</td>
-<td style="text-align: right;">8</td>
-<td style="text-align: right;">2</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">All-taxon grid-cell species richness (AIM)</td>
-<td style="text-align: left;">Kim et al. (2018)</td>
-<td style="text-align: left;">O</td>
-<td style="text-align: left;">W</td>
-<td style="text-align: left;">Community composition</td>
-<td style="text-align: left;">2. Regional</td>
-<td style="text-align: left;">Y</td>
-<td style="text-align: left;">N</td>
-<td style="text-align: left;">N</td>
-<td style="text-align: right;">NA</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">NA</td>
-<td style="text-align: right;">NA</td>
-<td style="text-align: left;">1900-2015</td>
-<td style="text-align: right;">2</td>
-<td style="text-align: right;">1</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Amphibian grid-cell species richness (AIM)</td>
-<td style="text-align: left;">Kim et al. (2018)</td>
-<td style="text-align: left;">O</td>
-<td style="text-align: left;">P</td>
-<td style="text-align: left;">Community composition</td>
-<td style="text-align: left;">2. Regional</td>
-<td style="text-align: left;">Y</td>
-<td style="text-align: left;">Y</td>
-<td style="text-align: left;">N</td>
-<td style="text-align: right;">NA</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">NA</td>
-<td style="text-align: right;">NA</td>
-<td style="text-align: left;">1900-2015</td>
-<td style="text-align: right;">2</td>
-<td style="text-align: right;">1</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Bird grid-cell species richness (AIM)</td>
-<td style="text-align: left;">Kim et al. (2018)</td>
-<td style="text-align: left;">O</td>
-<td style="text-align: left;">P</td>
-<td style="text-align: left;">Community composition</td>
-<td style="text-align: left;">2. Regional</td>
-<td style="text-align: left;">Y</td>
-<td style="text-align: left;">N</td>
-<td style="text-align: left;">N</td>
-<td style="text-align: right;">NA</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">NA</td>
-<td style="text-align: right;">NA</td>
-<td style="text-align: left;">1900-2015</td>
-<td style="text-align: right;">2</td>
-<td style="text-align: right;">1</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Cumulative introduced invasive aliens</td>
-<td style="text-align: left;">Sarah Darrah Ch3</td>
-<td style="text-align: left;">H</td>
-<td style="text-align: left;">W</td>
-<td style="text-align: left;">Community composition</td>
-<td style="text-align: left;">2. Regional</td>
-<td style="text-align: left;">Y</td>
-<td style="text-align: left;">N</td>
-<td style="text-align: left;">N</td>
-<td style="text-align: right;">0.00</td>
-<td style="text-align: right;">NA</td>
-<td style="text-align: right;">NA</td>
-<td style="text-align: right;">11.43</td>
-<td style="text-align: left;">1500-2012</td>
-<td style="text-align: right;">247</td>
-<td style="text-align: right;">43</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Cumulative number of alien species</td>
-<td style="text-align: left;">Seebens et al. (2017)</td>
-<td style="text-align: left;">O</td>
-<td style="text-align: left;">W</td>
-<td style="text-align: left;">Community composition</td>
-<td style="text-align: left;">2. Regional</td>
-<td style="text-align: left;">Y</td>
-<td style="text-align: left;">N</td>
-<td style="text-align: left;">N</td>
-<td style="text-align: right;">0.00</td>
-<td style="text-align: right;">NA</td>
-<td style="text-align: right;">NA</td>
-<td style="text-align: right;">13.15</td>
-<td style="text-align: left;">1970-2005</td>
-<td style="text-align: right;">36</td>
-<td style="text-align: right;">36</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Functional intactness (Madingley)</td>
-<td style="text-align: left;">Kim et al. (2018)</td>
-<td style="text-align: left;">O</td>
-<td style="text-align: left;">W</td>
-<td style="text-align: left;">Community composition</td>
-<td style="text-align: left;">2. Regional</td>
-<td style="text-align: left;">Y</td>
-<td style="text-align: left;">N</td>
-<td style="text-align: left;">N</td>
-<td style="text-align: right;">NA</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">NA</td>
-<td style="text-align: right;">-0.38</td>
-<td style="text-align: left;">1915-2015</td>
-<td style="text-align: right;">21</td>
-<td style="text-align: right;">10</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Mammal grid-cell species richness (AIM)</td>
-<td style="text-align: left;">Kim et al. (2018)</td>
-<td style="text-align: left;">O</td>
-<td style="text-align: left;">P</td>
-<td style="text-align: left;">Community composition</td>
-<td style="text-align: left;">2. Regional</td>
-<td style="text-align: left;">Y</td>
-<td style="text-align: left;">N</td>
-<td style="text-align: left;">N</td>
-<td style="text-align: right;">NA</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">NA</td>
-<td style="text-align: right;">NA</td>
-<td style="text-align: left;">1900-2015</td>
-<td style="text-align: right;">2</td>
-<td style="text-align: right;">1</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Mean regional bird richness (cSAR)</td>
-<td style="text-align: left;">Kim et al. (2018)</td>
-<td style="text-align: left;">O</td>
-<td style="text-align: left;">W</td>
-<td style="text-align: left;">Community composition</td>
-<td style="text-align: left;">2. Regional</td>
-<td style="text-align: left;">Y</td>
-<td style="text-align: left;">N</td>
-<td style="text-align: left;">N</td>
-<td style="text-align: right;">NA</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">NA</td>
-<td style="text-align: right;">0.14</td>
-<td style="text-align: left;">1910-2015</td>
-<td style="text-align: right;">12</td>
-<td style="text-align: right;">6</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Mean regional forest-specialist bird richness (cSAR)</td>
-<td style="text-align: left;">Kim et al. (2018)</td>
-<td style="text-align: left;">O</td>
-<td style="text-align: left;">P</td>
-<td style="text-align: left;">Community composition</td>
-<td style="text-align: left;">2. Regional</td>
-<td style="text-align: left;">N</td>
-<td style="text-align: left;">Y</td>
-<td style="text-align: left;">N</td>
-<td style="text-align: right;">NA</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">NA</td>
-<td style="text-align: right;">-0.39</td>
-<td style="text-align: left;">1910-2015</td>
-<td style="text-align: right;">12</td>
-<td style="text-align: right;">6</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Plant grid-cell species richness (AIM)</td>
-<td style="text-align: left;">Kim et al. (2018)</td>
-<td style="text-align: left;">O</td>
-<td style="text-align: left;">P</td>
-<td style="text-align: left;">Community composition</td>
-<td style="text-align: left;">2. Regional</td>
-<td style="text-align: left;">Y</td>
-<td style="text-align: left;">N</td>
-<td style="text-align: left;">N</td>
-<td style="text-align: right;">NA</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">NA</td>
-<td style="text-align: right;">NA</td>
-<td style="text-align: left;">1900-2015</td>
-<td style="text-align: right;">2</td>
-<td style="text-align: right;">1</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Reptile grid-cell species richness (AIM)</td>
-<td style="text-align: left;">Kim et al. (2018)</td>
-<td style="text-align: left;">O</td>
-<td style="text-align: left;">P</td>
-<td style="text-align: left;">Community composition</td>
-<td style="text-align: left;">2. Regional</td>
-<td style="text-align: left;">Y</td>
-<td style="text-align: left;">N</td>
-<td style="text-align: left;">N</td>
-<td style="text-align: right;">NA</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">NA</td>
-<td style="text-align: right;">NA</td>
-<td style="text-align: left;">1900-2015</td>
-<td style="text-align: right;">2</td>
-<td style="text-align: right;">1</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Invertebrate abundance [placeholder]</td>
-<td style="text-align: left;">Dirzo et al. (2014)</td>
-<td style="text-align: left;">O</td>
-<td style="text-align: left;">W</td>
-<td style="text-align: left;">Species populations</td>
-<td style="text-align: left;">1. Abundance</td>
-<td style="text-align: left;">Y</td>
-<td style="text-align: left;">N</td>
-<td style="text-align: left;">N</td>
-<td style="text-align: right;">NA</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">NA</td>
-<td style="text-align: right;">-11.25</td>
-<td style="text-align: left;">1970-2010</td>
-<td style="text-align: right;">2</td>
-<td style="text-align: right;">2</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Living Planet Index</td>
-<td style="text-align: left;">Collen et al. (2009)</td>
-<td style="text-align: left;">H</td>
-<td style="text-align: left;">W</td>
-<td style="text-align: left;">Species populations</td>
-<td style="text-align: left;">1. Abundance</td>
-<td style="text-align: left;">Y</td>
-<td style="text-align: left;">N</td>
-<td style="text-align: left;">N</td>
-<td style="text-align: right;">NA</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">NA</td>
-<td style="text-align: right;">-13.44</td>
-<td style="text-align: left;">1970-2012</td>
-<td style="text-align: right;">43</td>
-<td style="text-align: right;">43</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Percentage of fish stocks biologically sustainable</td>
-<td style="text-align: left;">FAO (2016)</td>
-<td style="text-align: left;">C</td>
-<td style="text-align: left;">W</td>
-<td style="text-align: left;">Species populations</td>
-<td style="text-align: left;">1. Abundance</td>
-<td style="text-align: left;">N</td>
-<td style="text-align: left;">N</td>
-<td style="text-align: left;">Y</td>
-<td style="text-align: right;">100.00</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">68.86</td>
-<td style="text-align: right;">-6.23</td>
-<td style="text-align: left;">1974-2013</td>
-<td style="text-align: right;">19</td>
-<td style="text-align: right;">19</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Predatory fish biomass</td>
-<td style="text-align: left;">Christensen et al. (2014)</td>
-<td style="text-align: left;">O</td>
-<td style="text-align: left;">W</td>
-<td style="text-align: left;">Species populations</td>
-<td style="text-align: left;">1. Abundance</td>
-<td style="text-align: left;">N</td>
-<td style="text-align: left;">Y</td>
-<td style="text-align: left;">Y</td>
-<td style="text-align: right;">NA</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">NA</td>
-<td style="text-align: right;">-14.12</td>
-<td style="text-align: left;">1880-2010</td>
-<td style="text-align: right;">4</td>
-<td style="text-align: right;">3</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Prey fish biomass</td>
-<td style="text-align: left;">Christensen et al. (2014)</td>
-<td style="text-align: left;">O</td>
-<td style="text-align: left;">W</td>
-<td style="text-align: left;">Species populations</td>
-<td style="text-align: left;">1. Abundance</td>
-<td style="text-align: left;">N</td>
-<td style="text-align: left;">N</td>
-<td style="text-align: left;">N</td>
-<td style="text-align: right;">NA</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">NA</td>
-<td style="text-align: right;">10.13</td>
-<td style="text-align: left;">1880-2010</td>
-<td style="text-align: right;">4</td>
-<td style="text-align: right;">3</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Wild Bird Index (habitat specialists)</td>
-<td style="text-align: left;">Gregory &amp; van Strien (2010)</td>
-<td style="text-align: left;">O</td>
-<td style="text-align: left;">P</td>
-<td style="text-align: left;">Species populations</td>
-<td style="text-align: left;">1. Abundance</td>
-<td style="text-align: left;">N</td>
-<td style="text-align: left;">Y</td>
-<td style="text-align: left;">N</td>
-<td style="text-align: right;">NA</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">NA</td>
-<td style="text-align: right;">-9.04</td>
-<td style="text-align: left;">1968-2014</td>
-<td style="text-align: right;">47</td>
-<td style="text-align: right;">45</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Extent of suitable habitat [placeholder]</td>
-<td style="text-align: left;">Visconti et al. (2016) [method]</td>
-<td style="text-align: left;">O</td>
-<td style="text-align: left;">W</td>
-<td style="text-align: left;">Species populations</td>
-<td style="text-align: left;">2. Range</td>
-<td style="text-align: left;">Y</td>
-<td style="text-align: left;">N</td>
-<td style="text-align: left;">N</td>
-<td style="text-align: right;">NA</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">NA</td>
-<td style="text-align: right;">-5.50</td>
-<td style="text-align: left;">1970-2010</td>
-<td style="text-align: right;">2</td>
-<td style="text-align: right;">2</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Mammalian range size</td>
-<td style="text-align: left;">Faurby &amp; Svenning (2015)</td>
-<td style="text-align: left;">O</td>
-<td style="text-align: left;">W</td>
-<td style="text-align: left;">Species populations</td>
-<td style="text-align: left;">2. Range</td>
-<td style="text-align: left;">Y</td>
-<td style="text-align: left;">N</td>
-<td style="text-align: left;">N</td>
-<td style="text-align: right;">1298365.00</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">82.65</td>
-<td style="text-align: right;">NA</td>
-<td style="text-align: left;">2008-2008</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">1</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Megafaunal range size</td>
-<td style="text-align: left;">Faurby &amp; Svenning (2015)</td>
-<td style="text-align: left;">O</td>
-<td style="text-align: left;">P</td>
-<td style="text-align: left;">Species populations</td>
-<td style="text-align: left;">2. Range</td>
-<td style="text-align: left;">N</td>
-<td style="text-align: left;">Y</td>
-<td style="text-align: left;">N</td>
-<td style="text-align: right;">242960.00</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">27.70</td>
-<td style="text-align: right;">NA</td>
-<td style="text-align: left;">2008-2008</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">1</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Species Habitat Index</td>
-<td style="text-align: left;">Jetz et al. (2012)</td>
-<td style="text-align: left;">C</td>
-<td style="text-align: left;">W</td>
-<td style="text-align: left;">Species populations</td>
-<td style="text-align: left;">2. Range</td>
-<td style="text-align: left;">Y</td>
-<td style="text-align: left;">N</td>
-<td style="text-align: left;">N</td>
-<td style="text-align: right;">NA</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">NA</td>
-<td style="text-align: right;">-1.03</td>
-<td style="text-align: left;">2001-2014</td>
-<td style="text-align: right;">14</td>
-<td style="text-align: right;">14</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Global bird species richness (cSAR)</td>
-<td style="text-align: left;">Kim et al. (2018)</td>
-<td style="text-align: left;">O</td>
-<td style="text-align: left;">W</td>
-<td style="text-align: left;">Species populations</td>
-<td style="text-align: left;">3. Existence</td>
-<td style="text-align: left;">Y</td>
-<td style="text-align: left;">N</td>
-<td style="text-align: left;">N</td>
-<td style="text-align: right;">100.00</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">97.59</td>
-<td style="text-align: right;">-0.12</td>
-<td style="text-align: left;">1900-2015</td>
-<td style="text-align: right;">13</td>
-<td style="text-align: right;">6</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Global forest-specialist bird species richness (cSAR)</td>
-<td style="text-align: left;">Kim et al. (2018)</td>
-<td style="text-align: left;">O</td>
-<td style="text-align: left;">P</td>
-<td style="text-align: left;">Species populations</td>
-<td style="text-align: left;">3. Existence</td>
-<td style="text-align: left;">N</td>
-<td style="text-align: left;">Y</td>
-<td style="text-align: left;">N</td>
-<td style="text-align: right;">100.00</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">94.88</td>
-<td style="text-align: right;">-0.32</td>
-<td style="text-align: left;">1900-2015</td>
-<td style="text-align: right;">13</td>
-<td style="text-align: right;">6</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Global mammal &amp; bird species remaning</td>
-<td style="text-align: left;">IUCN (2017)</td>
-<td style="text-align: left;">H</td>
-<td style="text-align: left;">W</td>
-<td style="text-align: left;">Species populations</td>
-<td style="text-align: left;">3. Existence</td>
-<td style="text-align: left;">Y</td>
-<td style="text-align: left;">N</td>
-<td style="text-align: left;">N</td>
-<td style="text-align: right;">16796.00</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">98.60</td>
-<td style="text-align: right;">-0.06</td>
-<td style="text-align: left;">1500-2017</td>
-<td style="text-align: right;">10</td>
-<td style="text-align: right;">3</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Global plant species remaining (BILBI)</td>
-<td style="text-align: left;">Kim et al. (2018)</td>
-<td style="text-align: left;">C</td>
-<td style="text-align: left;">W</td>
-<td style="text-align: left;">Species populations</td>
-<td style="text-align: left;">3. Existence</td>
-<td style="text-align: left;">Y</td>
-<td style="text-align: left;">N</td>
-<td style="text-align: left;">N</td>
-<td style="text-align: right;">1.00</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">95.74</td>
-<td style="text-align: right;">NA</td>
-<td style="text-align: left;">1900-2015</td>
-<td style="text-align: right;">2</td>
-<td style="text-align: right;">1</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Red List Index (forest specialists)</td>
-<td style="text-align: left;">Butchart et al. (2007)</td>
-<td style="text-align: left;">C</td>
-<td style="text-align: left;">P</td>
-<td style="text-align: left;">Species populations</td>
-<td style="text-align: left;">3. Existence</td>
-<td style="text-align: left;">N</td>
-<td style="text-align: left;">Y</td>
-<td style="text-align: left;">N</td>
-<td style="text-align: right;">1.00</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">72.01</td>
-<td style="text-align: right;">-1.08</td>
-<td style="text-align: left;">1988-2016</td>
-<td style="text-align: right;">8</td>
-<td style="text-align: right;">8</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Red List Index (impacts of fisheries)</td>
-<td style="text-align: left;">Butchart et al. (2007)</td>
-<td style="text-align: left;">C</td>
-<td style="text-align: left;">P</td>
-<td style="text-align: left;">Species populations</td>
-<td style="text-align: left;">3. Existence</td>
-<td style="text-align: left;">N</td>
-<td style="text-align: left;">N</td>
-<td style="text-align: left;">N</td>
-<td style="text-align: right;">1.00</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">88.32</td>
-<td style="text-align: right;">-0.03</td>
-<td style="text-align: left;">1988-2016</td>
-<td style="text-align: right;">8</td>
-<td style="text-align: right;">8</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Red List Index (impacts of invasive alien species)</td>
-<td style="text-align: left;">Butchart et al. (2007)</td>
-<td style="text-align: left;">C</td>
-<td style="text-align: left;">P</td>
-<td style="text-align: left;">Species populations</td>
-<td style="text-align: left;">3. Existence</td>
-<td style="text-align: left;">N</td>
-<td style="text-align: left;">N</td>
-<td style="text-align: left;">N</td>
-<td style="text-align: right;">1.00</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">83.65</td>
-<td style="text-align: right;">-0.29</td>
-<td style="text-align: left;">1988-2016</td>
-<td style="text-align: right;">8</td>
-<td style="text-align: right;">8</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Red List Index (impacts of pollution)</td>
-<td style="text-align: left;">Butchart et al. (2007)</td>
-<td style="text-align: left;">C</td>
-<td style="text-align: left;">P</td>
-<td style="text-align: left;">Species populations</td>
-<td style="text-align: left;">3. Existence</td>
-<td style="text-align: left;">N</td>
-<td style="text-align: left;">N</td>
-<td style="text-align: left;">N</td>
-<td style="text-align: right;">1.00</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">83.88</td>
-<td style="text-align: right;">-0.13</td>
-<td style="text-align: left;">1986-2016</td>
-<td style="text-align: right;">31</td>
-<td style="text-align: right;">31</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Red List Index (impacts of utilisation)</td>
-<td style="text-align: left;">Butchart et al. (2007)</td>
-<td style="text-align: left;">C</td>
-<td style="text-align: left;">P</td>
-<td style="text-align: left;">Species populations</td>
-<td style="text-align: left;">3. Existence</td>
-<td style="text-align: left;">N</td>
-<td style="text-align: left;">N</td>
-<td style="text-align: left;">Y</td>
-<td style="text-align: right;">1.00</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">83.84</td>
-<td style="text-align: right;">-0.20</td>
-<td style="text-align: left;">1986-2016</td>
-<td style="text-align: right;">31</td>
-<td style="text-align: right;">31</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Red List Index (internationally traded species)</td>
-<td style="text-align: left;">Butchart et al. (2007)</td>
-<td style="text-align: left;">C</td>
-<td style="text-align: left;">P</td>
-<td style="text-align: left;">Species populations</td>
-<td style="text-align: left;">3. Existence</td>
-<td style="text-align: left;">N</td>
-<td style="text-align: left;">N</td>
-<td style="text-align: left;">Y</td>
-<td style="text-align: right;">1.00</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">93.27</td>
-<td style="text-align: right;">-0.28</td>
-<td style="text-align: left;">1988-2016</td>
-<td style="text-align: right;">8</td>
-<td style="text-align: right;">8</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Red List Index (overall)</td>
-<td style="text-align: left;">Butchart et al. (2007)</td>
-<td style="text-align: left;">C</td>
-<td style="text-align: left;">W</td>
-<td style="text-align: left;">Species populations</td>
-<td style="text-align: left;">3. Existence</td>
-<td style="text-align: left;">Y</td>
-<td style="text-align: left;">N</td>
-<td style="text-align: left;">N</td>
-<td style="text-align: right;">1.00</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">74.57</td>
-<td style="text-align: right;">-4.25</td>
-<td style="text-align: left;">1994-2016</td>
-<td style="text-align: right;">7</td>
-<td style="text-align: right;">7</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Red List Index (pollinators)</td>
-<td style="text-align: left;">Butchart et al. (2007)</td>
-<td style="text-align: left;">C</td>
-<td style="text-align: left;">P</td>
-<td style="text-align: left;">Species populations</td>
-<td style="text-align: left;">3. Existence</td>
-<td style="text-align: left;">N</td>
-<td style="text-align: left;">N</td>
-<td style="text-align: left;">Y</td>
-<td style="text-align: right;">1.00</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">90.17</td>
-<td style="text-align: right;">-0.47</td>
-<td style="text-align: left;">1988-2016</td>
-<td style="text-align: right;">8</td>
-<td style="text-align: right;">8</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Red List Index (species used in food &amp; medicine)</td>
-<td style="text-align: left;">Butchart et al. (2007)</td>
-<td style="text-align: left;">C</td>
-<td style="text-align: left;">P</td>
-<td style="text-align: left;">Species populations</td>
-<td style="text-align: left;">3. Existence</td>
-<td style="text-align: left;">N</td>
-<td style="text-align: left;">N</td>
-<td style="text-align: left;">Y</td>
-<td style="text-align: right;">1.00</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">80.39</td>
-<td style="text-align: right;">-1.70</td>
-<td style="text-align: left;">1988-2012</td>
-<td style="text-align: right;">6</td>
-<td style="text-align: right;">6</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Red List Index (wild relatives of farmed &amp; domesticated species)</td>
-<td style="text-align: left;">Butchart et al. (2007)</td>
-<td style="text-align: left;">C</td>
-<td style="text-align: left;">P</td>
-<td style="text-align: left;">Species populations</td>
-<td style="text-align: left;">3. Existence</td>
-<td style="text-align: left;">N</td>
-<td style="text-align: left;">N</td>
-<td style="text-align: left;">Y</td>
-<td style="text-align: right;">1.00</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">77.51</td>
-<td style="text-align: right;">-0.80</td>
-<td style="text-align: left;">1988-2016</td>
-<td style="text-align: right;">8</td>
-<td style="text-align: right;">8</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Leaf Area Index</td>
-<td style="text-align: left;">Liu et al. (2010)</td>
-<td style="text-align: left;">O</td>
-<td style="text-align: left;">W</td>
-<td style="text-align: left;">Species traits</td>
-<td style="text-align: left;"></td>
-<td style="text-align: left;">Y</td>
-<td style="text-align: left;">N</td>
-<td style="text-align: left;">N</td>
-<td style="text-align: right;">NA</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">NA</td>
-<td style="text-align: right;">1.15</td>
-<td style="text-align: left;">1982-2009</td>
-<td style="text-align: right;">2</td>
-<td style="text-align: right;">2</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Mammalian body mass</td>
-<td style="text-align: left;">Santini et al. (2017)</td>
-<td style="text-align: left;">O</td>
-<td style="text-align: left;">W</td>
-<td style="text-align: left;">Species traits</td>
-<td style="text-align: left;"></td>
-<td style="text-align: left;">Y</td>
-<td style="text-align: left;">Y</td>
-<td style="text-align: left;">N</td>
-<td style="text-align: right;">677.03</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">81.70</td>
-<td style="text-align: right;">NA</td>
-<td style="text-align: left;">2009-2009</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">1</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Marine Trophic Index</td>
-<td style="text-align: left;">Kleisner et al. (2014)</td>
-<td style="text-align: left;">C</td>
-<td style="text-align: left;">W</td>
-<td style="text-align: left;">Species traits</td>
-<td style="text-align: left;"></td>
-<td style="text-align: left;">N</td>
-<td style="text-align: left;">N</td>
-<td style="text-align: left;">Y</td>
-<td style="text-align: right;">NA</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">NA</td>
-<td style="text-align: right;">-0.93</td>
-<td style="text-align: left;">1956-2014</td>
-<td style="text-align: right;">59</td>
-<td style="text-align: right;">45</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Mean functional diversity (Madingley)</td>
-<td style="text-align: left;">Kim et al. (2018)</td>
-<td style="text-align: left;">O</td>
-<td style="text-align: left;">W</td>
-<td style="text-align: left;">Species traits</td>
-<td style="text-align: left;"></td>
-<td style="text-align: left;">Y</td>
-<td style="text-align: left;">N</td>
-<td style="text-align: left;">N</td>
-<td style="text-align: right;">NA</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">NA</td>
-<td style="text-align: right;">-0.21</td>
-<td style="text-align: left;">1901-2015</td>
-<td style="text-align: right;">22</td>
-<td style="text-align: right;">10</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Proportion of predatory fish [placeholder]</td>
-<td style="text-align: left;">Kleisner et al. (2015)</td>
-<td style="text-align: left;">O</td>
-<td style="text-align: left;">W</td>
-<td style="text-align: left;">Species traits</td>
-<td style="text-align: left;"></td>
-<td style="text-align: left;">N</td>
-<td style="text-align: left;">Y</td>
-<td style="text-align: left;">Y</td>
-<td style="text-align: right;">NA</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">NA</td>
-<td style="text-align: right;">-10.88</td>
-<td style="text-align: left;">1988-2010</td>
-<td style="text-align: right;">19</td>
-<td style="text-align: right;">19</td>
 </tr>
 </tbody>
 </table>

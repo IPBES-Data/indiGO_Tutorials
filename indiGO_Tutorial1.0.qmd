@@ -14,37 +14,44 @@ format:
 ```{r, echo=FALSE}
 library(kableExtra)
 library(devtools)
+library(dbplyr)
 ```
 
-# Overview
+# **Package** description
 
-The **indiGO R-package** provides an open-access framework that enables users to access annually and globally aggregated indicators as described in the [first Global Assessment Report on Biodiversity and Ecosystem Services](https://doi.org/10.5281/zenodo.3831673) of the Intergovernmental Science-Policy Platform on Biodiversity and Ecosystem Services (IPBES, 2019). It follows the standardization of indicators outlined in the supplemental material of the Global Assessment Report, [Chapter 2.2: Status and Trends – Nature](https://doi.org/10.5281/zenodo.3832005).
+The indiGO R package provides an open-access framework that enables users to access annually aggregated indicators as described in the [first Global Assessment Report on Biodiversity and Ecosystem Services](https://doi.org/10.5281/zenodo.3831673) by the Intergovernmental Science-Policy Platform on Biodiversity and Ecosystem Services (IPBES, 2019). It follows the standardization of indicators outlined in the supplementary material of the Global Assessment Report, [Chapter 2.2: Status and Trends – Nature](https://doi.org/10.5281/zenodo.3832005).
 
-The package provides a flexible framework for handling a wide variety of indicators, not limited to a specific region, ecosystem, or time period. The generalized outputs are broad and adaptable, allowing users to apply them to various generalized data sets or indicator types across global or regional scales. Additionally, indiGO allows users to include their own data, enabling local data integration for customized indicator analysis.
+The package offers a flexible framework for handling a wide variety of indicators, not limited to a specific region, ecosystem, or time period. Its generalized outputs are broad and adaptable, allowing users to apply them to various data sets or indicator types across global or regional scales. Additionally, indiGO allows users to include their own data, enabling local data integration for customized indicator analysis.
 
-Here we show how to access the data and use the functions provided by the indiGO package. As a first step, the package should be installed from github and loaded.
+# Download and install
 
-# Installation
+You can download and install the indiGO R package directly from the [indiGO R package GitHub repository](https://github.com/IPBES-Data/indiGO) using the following commands in R:
 
-To install the package, run the following command in R:
+``` r
+# Install devtools if not already installed
+install.packages("devtools")
 
-```{r}
-#Installation from GitHub
-devtools::install_github("hetzerj/indiGO")
-library(indiGO)
+# Install indiGO package from GitHub
+devtools::install_github("IPBES-Data/indiGO")
 ```
 
 # Indicator data included
 
-The package includes a variety of indicator data, in specific data sets that represent the state of nature globally or across multiple regions. The package focuses on the indicators defined and classified by IPBES (2019). Indicators are assigned to Essential Biodiversity Variable (EBV) classes and categorized based on their relevance to ecosystems and their sensitivity to human impacts. For an overview of the indicator meta data see Table 1, which can be displayed using the indiGO function `indi_summary()`.
+The package includes a variety of indicator data, in specific data sets that represent the state of nature globally or across multiple regions. The package focuses on the indicators defined and classified by IPBES (2019). Indicators are assigned to Essential Biodiversity Variable (EBV) classes and categorized based on their relevance to ecosystems and their sensitivity to human impacts. For an overview of the indicator meta data see Table 1, which can be loaded using the indiGO function `indi_summary()`.
 
 ```{r}
-Tab1<-indiGO::indi_summary()
+Table1<-indiGO::indi_summary()
+```
 
-Tab1%>%
-  kbl(escape = FALSE, caption="Table 1: Summary of indicators used in this synthesis organised alphabetically within EBV class (and, where relevant, EBV scale). Core/Highlight/Other denotes the Knowledge & Data TSU’s evaluation of each indicator. Whole or Part of indicator denotes whether the row of the table refers to an overall indicator (e.g., Red List Index) or a subset (e.g., Red List Index of pollinators).") %>%
-  kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive")) %>%
-  row_spec(0, extra_css = "height: 180px; transform-origin: left", angle=-45)
+***Table 1: Example of Indicator Metadata**. This internally loaded data table includes the indicator names "Indicator", data sources "Reference", and the Essential Biodiversity Variable "EBV.Class" as designated by IPBES (2019). The column "Core.Highlight.Other" represents the Knowledge & Data TSU’s assessment of the importance of each indicator. While all indicators are available as globally aggregated values, some specify subsets of these metrics. For example, the global Red List Index indicator is further broken down into subsets, such as the Red List Index of pollinators. The column "Whole.or.Part.of.indicator" indicates whether the entry represents the overall indicator or a subset.*
+
+```{r, echo=FALSE}
+
+Table1 %>%
+  dplyr::select(1, 2, 5, 3, 4) %>% 
+  head(25) %>%
+  kbl(escape = FALSE) %>%
+  kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive")) 
 ```
 
 The package provides an internal function, `indi_search()`, to explore the available data. This function allows you to filter and display files that match a specific pattern in their filenames. For example, to list all files related to biodiversity, you can use the following:
@@ -69,9 +76,9 @@ The package provides the option to analyze local files formatted in the same way
 
 ```
 
-# Exploring indiGO Package Functionalities
+# Exploring indiGO package functionalities
 
-Trends over time in comparison o a pristine world can be examined using the ``` plot_scaled_to_remaining(``"indicatorName"``) ``` function, while changes since 1970 can be assessed with ``` plot_scaled_to_1970(``"indicatorName"``) ```, displaying the globally aggregated value standardized to a percentage or relative to its 1970 value.
+Trends over time in comparison o a pristine world can be examined using the `plot_scaled_to_remaining("indicatorName")` function, while changes since 1970 can be assessed with `plot_scaled_to_1970("indicatorName")`, displaying the globally aggregated value standardized to a percentage or relative to its 1970 value.
 
 ```{r, fig.width=15, fig.height=5}
 indiGO::plot_scaled_to_remaining("extent_of_forests")
