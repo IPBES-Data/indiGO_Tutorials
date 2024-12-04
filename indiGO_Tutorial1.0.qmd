@@ -17,7 +17,8 @@ library(devtools)
 library(dbplyr)
 ```
 
-# **Package** description
+
+# Package description
 
 The indiGO R package provides an open-access framework that enables users to access annually aggregated indicators as described in the [first Global Assessment Report on Biodiversity and Ecosystem Services](https://doi.org/10.5281/zenodo.3831673) by the Intergovernmental Science-Policy Platform on Biodiversity and Ecosystem Services (IPBES, 2019). It follows the standardization of indicators outlined in the supplementary material of the Global Assessment Report, [Chapter 2.2: Status and Trends – Nature](https://doi.org/10.5281/zenodo.3832005).
 
@@ -43,7 +44,7 @@ The package includes a variety of indicator data, in specific data sets that rep
 Table1<-indiGO::indi_summary()
 ```
 
-***Table 1: Example of Indicator Metadata**. This internally loaded data table includes the indicator names "Indicator", data sources "Reference", and the Essential Biodiversity Variable "EBV.Class" as designated by IPBES (2019). The column "Core.Highlight.Other" represents the Knowledge & Data TSU’s assessment of the importance of each indicator. While all indicators are available as globally aggregated values, some specify subsets of these metrics. For example, the global Red List Index indicator is further broken down into subsets, such as the Red List Index of pollinators. The column "Whole.or.Part.of.indicator" indicates whether the entry represents the overall indicator or a subset.*
+***Table 1: Example of indicator metadata**. This internally loaded data table includes the indicator names "Indicator", data sources "Reference", and the Essential Biodiversity Variable "EBV.Class" as designated by IPBES (2019). The column "Core.Highlight.Other" represents the Knowledge & Data TSU’s assessment of the importance of each indicator. While all indicators are available as globally aggregated values, some specify subsets of these metrics. For example, the global Red List Index indicator is further broken down into subsets, such as the Red List Index of pollinators. The column "Whole.or.Part.of.indicator" indicates whether the entry represents the overall indicator or a subset.*
 
 ```{r, echo=FALSE}
 
@@ -81,6 +82,7 @@ The package provides the option to analyze local files formatted in the same way
 Trends over time in comparison o a pristine world can be examined using the `plot_scaled_to_remaining("indicatorName")` function, while changes since 1970 can be assessed with `plot_scaled_to_1970("indicatorName")`, displaying the globally aggregated value standardized to a percentage or relative to its 1970 value.
 
 ```{r, fig.width=15, fig.height=5}
+indiGO::plot_indi_data("extent_of_forests")
 indiGO::plot_scaled_to_remaining("extent_of_forests")
 indiGO::plot_scaled_to_1970("extent_of_forests")
 ```
